@@ -1,0 +1,109 @@
+{
+    "id": "uksa-ssgp-spot",
+    "stac_version": "1.0.0-beta.2",
+    "description": "### UKSA / SSGP SPOT 6 & 7\n\n    A collection of SPOT 6 & 7 images over the UK. Procured by UKSA under its Space for Smarter Government Programme (SSGP).\n    ",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT155_SO18034609-55-01_DS_SPOT6_201810101058095_FR1_FR1_FR1_FR1_W001N52_01140/UKSA_SPOT155_SO18034609-55-01_DS_SPOT6_201810101058095_FR1_FR1_FR1_FR1_W001N52_01140.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140/UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT161_SO18034609-61-01_DS_SPOT6_201810191039150_FR1_FR1_SV1_SV1_W002N51_01709/UKSA_SPOT161_SO18034609-61-01_DS_SPOT6_201810191039150_FR1_FR1_SV1_SV1_W002N51_01709.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT287_SO18034610-86-01_DS_SPOT7_201809241031594_FR1_FR1_FR1_FR1_W002N52_01222/UKSA_SPOT287_SO18034610-86-01_DS_SPOT7_201809241031594_FR1_FR1_FR1_FR1_W002N52_01222.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT288_SO18034610-87-01_DS_SPOT7_201809271058114_FR1_FR1_SV1_SV1_W001N52_02845/UKSA_SPOT288_SO18034610-87-01_DS_SPOT7_201809271058114_FR1_FR1_SV1_SV1_W001N52_02845.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT289_SO18034610-88-01_DS_SPOT7_201809271058350_FR1_FR1_SV1_SV1_W002N52_03251/UKSA_SPOT289_SO18034610-88-01_DS_SPOT7_201809271058350_FR1_FR1_SV1_SV1_W002N52_03251.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT290_SO18034610-89-01_DS_SPOT7_201809271059006_FR1_FR1_FR1_FR1_W002N52_03332/UKSA_SPOT290_SO18034610-89-01_DS_SPOT7_201809271059006_FR1_FR1_FR1_FR1_W002N52_03332.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./UKSA_SPOT291_SO18034610-90-01_DS_SPOT7_201809271059251_FR1_FR1_SV1_SV1_W002N51_04469/UKSA_SPOT291_SO18034610-90-01_DS_SPOT7_201809271059251_FR1_FR1_SV1_SV1_W002N51_04469.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "SSGP-procured Spot 6 & 7 images over the UK",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -2.83129686995,
+                    50.4427331374,
+                    -0.240355992445,
+                    52.473109175
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2018-09-24T10:31:59Z",
+                    "2018-10-19T10:39:15Z"
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Airbus Defence & Space",
+            "roles": [
+                "producer"
+            ],
+            "url": "https://www.airbus.com/space.html"
+        },
+        {
+            "name": "UK Space Agency",
+            "roles": [
+                "licensor"
+            ],
+            "url": "https://www.gov.uk/government/organisations/uk-space-agency"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "processor"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "host"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        }
+    ]
+}

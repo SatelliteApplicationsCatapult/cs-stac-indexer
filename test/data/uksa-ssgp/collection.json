@@ -1,0 +1,79 @@
+{
+    "id": "uksa-ssgp",
+    "stac_version": "1.0.0-beta.2",
+    "description": "### UKSA / SSGP Satellite Data\n\n    A collection of Very High Resolution (VHR) optical and synthetic aperture radar (SAR) satellite datasets over the UK. Procured by UKSA under its Space for Smarter Government Programme (SSGP).\n    ",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "./uksa-ssgp-pleiades/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "./uksa-ssgp-spot/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "SSGP-procured VHR Satellite Data over the UK",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -7.57216793459,
+                    49.959999905,
+                    1.68153079591,
+                    58.6350001085
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2011-12-16T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Airbus Defence & Space",
+            "roles": [
+                "producer"
+            ],
+            "url": "https://www.airbus.com/space.html"
+        },
+        {
+            "name": "UK Space Agency",
+            "roles": [
+                "licensor"
+            ],
+            "url": "https://www.gov.uk/government/organisations/uk-space-agency"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "processor"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "host"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        }
+    ]
+}

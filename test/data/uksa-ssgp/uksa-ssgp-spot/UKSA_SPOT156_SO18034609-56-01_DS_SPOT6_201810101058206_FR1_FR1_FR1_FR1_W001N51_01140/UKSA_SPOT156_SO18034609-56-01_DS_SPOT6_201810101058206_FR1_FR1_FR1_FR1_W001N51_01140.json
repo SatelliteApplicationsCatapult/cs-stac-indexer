@@ -1,0 +1,155 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140",
+    "properties": {
+        "gsd": 10.13,
+        "eo:cloud_cover": 0.0,
+        "proj:epsg": 27700,
+        "datetime": "2018-10-10T10:58:20Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -0.8679748009161611,
+                    51.57488332648825
+                ],
+                [
+                    -0.8629947891564569,
+                    51.57483519495921
+                ],
+                [
+                    -0.8624504886987914,
+                    51.240941191300145
+                ],
+                [
+                    -0.8625499872184383,
+                    51.236906184294774
+                ],
+                [
+                    -0.8628898045857291,
+                    51.23666767834069
+                ],
+                [
+                    -1.9163144335869735,
+                    51.15825948954865
+                ],
+                [
+                    -1.91772873896238,
+                    51.158260489543586
+                ],
+                [
+                    -1.918113554445881,
+                    51.15847389702089
+                ],
+                [
+                    -1.9182036202973265,
+                    51.32749175689942
+                ],
+                [
+                    -1.9182460333629014,
+                    51.40752271029053
+                ],
+                [
+                    -1.9180871980653769,
+                    51.49665545231062
+                ],
+                [
+                    -1.9178523669767142,
+                    51.49682177131772
+                ],
+                [
+                    -0.8679748009161611,
+                    51.57488332648825
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "B0": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/spot/UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140/PROD_SPOT6_001/VOL_SPOT6_001_A/IMG_SPOT6_P_001_A/IMG_SPOT6_P_201810101058206_ORT_band1.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Panchromatic",
+                    "common_name": "pan",
+                    "description": "Panchromatic: 450 - 745 nm"
+                }
+            ]
+        },
+        "B1": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/spot/UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140/PROD_SPOT6_001/VOL_SPOT6_001_A/IMG_SPOT6_MS_001_A/IMG_SPOT6_MS_201810101058206_ORT_band1.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Blue",
+                    "common_name": "blue",
+                    "description": "Blue: 450 - 520 nm"
+                }
+            ]
+        },
+        "B2": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/spot/UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140/PROD_SPOT6_001/VOL_SPOT6_001_A/IMG_SPOT6_MS_001_A/IMG_SPOT6_MS_201810101058206_ORT_band2.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Green",
+                    "common_name": "green",
+                    "description": "Green: 530 - 590 nm"
+                }
+            ]
+        },
+        "B3": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/spot/UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140/PROD_SPOT6_001/VOL_SPOT6_001_A/IMG_SPOT6_MS_001_A/IMG_SPOT6_MS_201810101058206_ORT_band3.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Red",
+                    "common_name": "red",
+                    "description": "Red: 625 - 695 nm"
+                }
+            ]
+        },
+        "B4": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/spot/UKSA_SPOT156_SO18034609-56-01_DS_SPOT6_201810101058206_FR1_FR1_FR1_FR1_W001N51_01140/PROD_SPOT6_001/VOL_SPOT6_001_A/IMG_SPOT6_MS_001_A/IMG_SPOT6_MS_201810101058206_ORT_band4.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Near-Infrared",
+                    "common_name": "nir",
+                    "description": "Near-Infrared: 760 - 890 nm"
+                }
+            ]
+        }
+    },
+    "bbox": [
+        -1.91872879676,
+        51.152808938,
+        -0.854181104292,
+        51.5803385345
+    ],
+    "stac_extensions": [
+        "eo",
+        "projection"
+    ],
+    "collection": "uksa-ssgp-spot"
+}

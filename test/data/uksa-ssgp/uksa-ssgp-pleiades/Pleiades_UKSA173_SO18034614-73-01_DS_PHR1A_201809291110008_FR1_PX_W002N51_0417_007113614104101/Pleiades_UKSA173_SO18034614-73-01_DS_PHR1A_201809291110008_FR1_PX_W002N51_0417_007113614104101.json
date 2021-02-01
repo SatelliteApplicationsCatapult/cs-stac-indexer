@@ -1,0 +1,235 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101",
+    "properties": {
+        "gsd": 0.74,
+        "eo:cloud_cover": 0.0,
+        "proj:epsg": 27700,
+        "datetime": "2018-09-29T11:10:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -1.7162111146081491,
+                    51.703447752207374
+                ],
+                [
+                    -1.6539393674716631,
+                    51.70305171212088
+                ],
+                [
+                    -1.5922000556276548,
+                    51.7022918404328
+                ],
+                [
+                    -1.592478005824943,
+                    51.66971308516982
+                ],
+                [
+                    -1.5923937686249074,
+                    51.660564184797174
+                ],
+                [
+                    -1.5924483796708082,
+                    51.65689143996495
+                ],
+                [
+                    -1.5923435803877832,
+                    51.6484257860413
+                ],
+                [
+                    -1.5925225669770522,
+                    51.629252456312805
+                ],
+                [
+                    -1.6313240498998447,
+                    51.629686309100045
+                ],
+                [
+                    -1.6617769179346535,
+                    51.62994873863878
+                ],
+                [
+                    -1.715447257136181,
+                    51.63018534903567
+                ],
+                [
+                    -1.7483946591920845,
+                    51.630161588463274
+                ],
+                [
+                    -1.7789150489058498,
+                    51.63009707066823
+                ],
+                [
+                    -1.8369443638514822,
+                    51.62966137158252
+                ],
+                [
+                    -1.8706869752457782,
+                    51.629244747190995
+                ],
+                [
+                    -1.902984365251201,
+                    51.62878127998801
+                ],
+                [
+                    -1.9031756192477154,
+                    51.64416997236793
+                ],
+                [
+                    -1.9032281966762568,
+                    51.65003679955556
+                ],
+                [
+                    -1.9031830688830722,
+                    51.650868451669226
+                ],
+                [
+                    -1.9032398631646559,
+                    51.65134952934474
+                ],
+                [
+                    -1.9032635080951406,
+                    51.6606374853309
+                ],
+                [
+                    -1.903368845801305,
+                    51.668909487362704
+                ],
+                [
+                    -1.9033307786452263,
+                    51.669813072279545
+                ],
+                [
+                    -1.903389897227946,
+                    51.672618376007144
+                ],
+                [
+                    -1.9033553365867595,
+                    51.675275246793404
+                ],
+                [
+                    -1.9033978059631684,
+                    51.67570685904059
+                ],
+                [
+                    -1.9034325966702832,
+                    51.686577233067496
+                ],
+                [
+                    -1.9034135338037725,
+                    51.70237469751975
+                ],
+                [
+                    -1.8756005685839259,
+                    51.70273072943466
+                ],
+                [
+                    -1.841058256714323,
+                    51.703111743030504
+                ],
+                [
+                    -1.8120077713741385,
+                    51.703302690300696
+                ],
+                [
+                    -1.7785580302502193,
+                    51.703473760830654
+                ],
+                [
+                    -1.7162111146081491,
+                    51.703447752207374
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "B0": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101/IMG_PHR1A_P_001/IMG_PHR1A_P_201809291110008_ORT_36141041_band1.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Panchromatic",
+                    "common_name": "pan",
+                    "description": "Panchromatic: 480 - 830 nm"
+                }
+            ]
+        },
+        "B1": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101/IMG_PHR1A_MS_002/IMG_PHR1A_MS_201809291110008_ORT_36141041_band1.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Blue",
+                    "common_name": "blue",
+                    "description": "Blue: 430 - 550 nm"
+                }
+            ]
+        },
+        "B2": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101/IMG_PHR1A_MS_002/IMG_PHR1A_MS_201809291110008_ORT_36141041_band2.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Green",
+                    "common_name": "green",
+                    "description": "Green: 490 - 610 nm"
+                }
+            ]
+        },
+        "B3": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101/IMG_PHR1A_MS_002/IMG_PHR1A_MS_201809291110008_ORT_36141041_band3.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Red",
+                    "common_name": "red",
+                    "description": "Red: 600 - 720 nm"
+                }
+            ]
+        },
+        "B4": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101/IMG_PHR1A_MS_002/IMG_PHR1A_MS_201809291110008_ORT_36141041_band4.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Near-Infrared",
+                    "common_name": "nir",
+                    "description": "Near-Infrared: 750 - 950 nm"
+                }
+            ]
+        }
+    },
+    "bbox": [
+        -1.903199885312827,
+        51.62869184186537,
+        -1.592242985175717,
+        51.70382196570706
+    ],
+    "stac_extensions": [
+        "eo",
+        "projection"
+    ],
+    "collection": "uksa-ssgp-pleiades"
+}

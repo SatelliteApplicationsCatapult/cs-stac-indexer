@@ -1,0 +1,187 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101",
+    "properties": {
+        "gsd": 0.7,
+        "eo:cloud_cover": 0.0,
+        "proj:epsg": 27700,
+        "datetime": "2018-02-25T11:21:24Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -1.7544154495953175,
+                    51.62282394365268
+                ],
+                [
+                    -1.7302713440884254,
+                    51.62269009596029
+                ],
+                [
+                    -1.6961466946646446,
+                    51.62243598954169
+                ],
+                [
+                    -1.661113639656702,
+                    51.62201200091065
+                ],
+                [
+                    -1.6378167383031152,
+                    51.62168625074434
+                ],
+                [
+                    -1.6379625855986193,
+                    51.56426786883136
+                ],
+                [
+                    -1.6381563004031037,
+                    51.534380959069175
+                ],
+                [
+                    -1.6382036746557787,
+                    51.5165690135613
+                ],
+                [
+                    -1.6963918033682894,
+                    51.51735880896062
+                ],
+                [
+                    -1.7534887497190694,
+                    51.51774431031759
+                ],
+                [
+                    -1.7845675027439851,
+                    51.51779643612609
+                ],
+                [
+                    -1.8083829606844302,
+                    51.517801732253446
+                ],
+                [
+                    -1.8232993122914727,
+                    51.51776217342656
+                ],
+                [
+                    -1.871103961592591,
+                    51.517473661801326
+                ],
+                [
+                    -1.9285499066037068,
+                    51.51681675521426
+                ],
+                [
+                    -1.9288046015284457,
+                    51.62183597524152
+                ],
+                [
+                    -1.8986576419890622,
+                    51.622222997042165
+                ],
+                [
+                    -1.8705688018132955,
+                    51.622528134987235
+                ],
+                [
+                    -1.83283058482373,
+                    51.622754790760446
+                ],
+                [
+                    -1.8131777554222768,
+                    51.62285108864266
+                ],
+                [
+                    -1.7544154495953175,
+                    51.62282394365268
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "B0": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101/IMG_PHR1B_P_001/IMG_PHR1B_P_201802251121249_ORT_36137751_band1.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Panchromatic",
+                    "common_name": "pan",
+                    "description": "Panchromatic: 480 - 830 nm"
+                }
+            ]
+        },
+        "B1": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101/IMG_PHR1B_MS_002/IMG_PHR1B_MS_201802251121249_ORT_36137751_band1.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Blue",
+                    "common_name": "blue",
+                    "description": "Blue: 430 - 550 nm"
+                }
+            ]
+        },
+        "B2": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101/IMG_PHR1B_MS_002/IMG_PHR1B_MS_201802251121249_ORT_36137751_band2.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Green",
+                    "common_name": "green",
+                    "description": "Green: 490 - 610 nm"
+                }
+            ]
+        },
+        "B3": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101/IMG_PHR1B_MS_002/IMG_PHR1B_MS_201802251121249_ORT_36137751_band3.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Red",
+                    "common_name": "red",
+                    "description": "Red: 600 - 720 nm"
+                }
+            ]
+        },
+        "B4": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/uksa-ssgp/pleiades/Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101/IMG_PHR1B_MS_002/IMG_PHR1B_MS_201802251121249_ORT_36137751_band4.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "Near-Infrared",
+                    "common_name": "nir",
+                    "description": "Near-Infrared: 750 - 950 nm"
+                }
+            ]
+        }
+    },
+    "bbox": [
+        -1.92862757631692,
+        51.5173298608642,
+        -1.637712477877002,
+        51.62353062170976
+    ],
+    "stac_extensions": [
+        "eo",
+        "projection"
+    ],
+    "collection": "uksa-ssgp-pleiades"
+}

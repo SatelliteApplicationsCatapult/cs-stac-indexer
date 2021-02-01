@@ -1,0 +1,109 @@
+{
+    "id": "uksa-ssgp-pleiades",
+    "stac_version": "1.0.0-beta.2",
+    "description": "### UKSA / SSGP Pleiades\n\n    A collection of Pleiades images over the UK. Procured by UKSA under its Space for Smarter Government Programme (SSGP).\n    ",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101/Pleiades_UKSA173_SO18034614-73-01_DS_PHR1A_201809291110008_FR1_PX_W002N51_0417_007113614104101.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA174_SO18034614-74-01_DS_PHR1A_201809291110083_FR1_PX_W002N51_0116_00596TPP1601069431/Pleiades_UKSA174_SO18034614-74-01_DS_PHR1A_201809291110083_FR1_PX_W002N51_0116_00596TPP1601069431.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101/Pleiades_UKSA204_SO18034615-4-01_DS_PHR1B_201802251121249_FR1_PX_W002N51_0314_010483613775101.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA305_SO18034616-5-01_DS_PHR1B_201807241124303_FR1_PX_W002N51_0720_01561TPP1601069279/Pleiades_UKSA305_SO18034616-5-01_DS_PHR1B_201807241124303_FR1_PX_W002N51_0720_01561TPP1601069279.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA341_SO18034616-41-01_DS_PHR1B_201809021117346_FR1_PX_W002N51_1008_03279TPP1601069492/Pleiades_UKSA341_SO18034616-41-01_DS_PHR1B_201809021117346_FR1_PX_W002N51_1008_03279TPP1601069492.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA396_SO18034616-96-01_DS_PHR1B_201810241117221_FR1_PX_W002N51_0710_01712TPP1601069318/Pleiades_UKSA396_SO18034616-96-01_DS_PHR1B_201810241117221_FR1_PX_W002N51_0710_01712TPP1601069318.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA7_SO18034613-7-01_DS_PHR1A_201802241127550_FR1_PX_W002N51_0711_024843613631101/Pleiades_UKSA7_SO18034613-7-01_DS_PHR1A_201802241127550_FR1_PX_W002N51_0711_024843613631101.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./Pleiades_UKSA87_SO18034613-87-01_DS_PHR1A_201806291118170_FR1_PX_W002N51_1016_029773614015101/Pleiades_UKSA87_SO18034613-87-01_DS_PHR1A_201806291118170_FR1_PX_W002N51_1016_029773614015101.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json"
+        }
+    ],
+    "title": "SSGP-procured Pleiades images over the UK",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -2.153701453474465,
+                    51.15439056920768,
+                    -1.082452236576131,
+                    51.90716967216828
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2018-02-24T11:27:55Z",
+                    "2018-10-24T11:17:22Z"
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Airbus Defence & Space",
+            "roles": [
+                "producer"
+            ],
+            "url": "https://www.airbus.com/space.html"
+        },
+        {
+            "name": "UK Space Agency",
+            "roles": [
+                "licensor"
+            ],
+            "url": "https://www.gov.uk/government/organisations/uk-space-agency"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "processor"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "host"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        }
+    ]
+}
