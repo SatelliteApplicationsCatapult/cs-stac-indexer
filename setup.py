@@ -10,6 +10,9 @@ setup(
     python_requires='>=3.5, <4',
     install_requires=['click~=7.1.2', 'elasticsearch==7.10.1'],
     entry_points={
-        'console_scripts': ['stac-to-es=stac_to_es.cli:main'],
+        'console_scripts': [
+            'stac-to-es=stac_to_es.cli:main',
+            'stac-to-dc=stac_to_dc.cli:main',
+        ],
     }
 )
