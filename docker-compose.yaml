@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  datacube:
+    image: kartoza/postgis:11.0-2.5
+    container_name: datacube
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./test/datacube/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./test/datacube/test.sql:/docker-entrypoint-initdb.d/02-dbdump.sql
+    environment:
+      - POSTGRES_DB=datacube
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=localuser1234
+
+  explorer:
+    image: opendatacube/explorer
+    ports:
+      - 80:8080
+    environment:
+      - DB_HOSTNAME=datacube
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=localuser1234
+      - DB_DATABASE=datacube
+      - DB_PORT=5432
+      - FLASK_ENV=development
+      - FLASK_APP=cubedash
+      - FLASK_DEBUG=1
+    command: gunicorn -b '0.0.0.0:8080' -w 1 '--worker-class=egg:meinheld#gunicorn_worker'  --timeout 60 cubedash:app
+    depends_on:
+      - datacube
