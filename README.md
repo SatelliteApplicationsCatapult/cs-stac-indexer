@@ -46,11 +46,13 @@ This tool allows some configuration via the [config.json](./src/stac_to_es/confi
 
 ### stac-to-dc
 
-Indexes the `STAC_ITEM` file given as a parameter into datacube in the given `PRODUCT`.
+Indexes the `STAC_ITEM` file given as a parameter into datacube. It automatically resolves and create
+the product definition using the links.
+
 
 ```
 > stac-to-dc --help
-Usage: stac-to-dc [OPTIONS] STAC_ITEM PRODUCT
+Usage: stac-to-dc [OPTIONS] STAC_ITEM
 
 Options:
   --help  Show this message and exit.
@@ -58,7 +60,42 @@ Options:
 
 Example of use
 ```
-> stac-to-dc ./test/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json s2_l2a
+> stac-to-dc ./test/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json
+```
+
+One criteria to bear in mind is the `product_definition` stac_extension included in the collection, it
+is where the tool will look at to create the product. This `product_definition` extension looks like this:
+
+```json
+{
+    "stac_extensions": [
+        "item-assets",
+        "product_definition"
+    ],
+    ...
+    "product_definition": {
+        "metadata_type": "eo3",
+        "metadata": {
+            "product": {
+                "name": "s2_l2a"
+            }
+        },
+        "measurements": [
+            {
+              "name": "B01",
+              "aliases": [
+                "band_01",
+                "coastal_aerosol"
+              ],
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": 0
+            },
+            ...
+        ]
+    }
+    ...
+}
 ```
 
 #### Test Environment
@@ -69,11 +106,6 @@ docker-compose up -d
 
 (wait for the database to be populated)
 
-Add sentinel 2 product
-``` docker
-docker exec -it cs-stac-indexer_explorer_1 datacube product add https://raw.githubusercontent.com/digitalearthafrica/config/master/products/esa_s2_l2a.yaml
-```
-
 Generate product summaries (for datacube explorer)
 ``` docker
 docker exec -it cs-stac-indexer_explorer_1 cubedash-gen --init --all
@@ -81,7 +113,7 @@ docker exec -it cs-stac-indexer_explorer_1 cubedash-gen --init --all
 
 Index the s2 example dataset
 ``` bash
-stac-to-dc ./test/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json s2_l2a
+stac-to-dc ./test/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json
 ```
 
 Refresh the collection (for datacube explorer)
