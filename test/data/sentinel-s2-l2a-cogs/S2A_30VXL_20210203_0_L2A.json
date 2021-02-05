@@ -656,7 +656,7 @@
         },
         {
             "rel": "collection",
-            "href": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs"
+            "href": "./sentinel-s2-l2a-cogs.json"
         },
         {
             "rel": "root",
