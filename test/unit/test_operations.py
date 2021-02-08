@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from datacube import Datacube
 from stac_to_dc.domain.operations import get_item, guess_location, get_product_definition, create_product, \
     get_collection_url
@@ -23,9 +25,14 @@ def test_guess_location_relative():
     assert relative
 
 
-def test_get_collection_url():
+def test_get_collection_url_same_level():
     collection_url = get_collection_url('test/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json')
-    assert collection_url
+    assert Path(collection_url) == Path('./test/data/sentinel-s2-l2a-cogs/sentinel-s2-l2a-cogs.json').absolute()
+
+
+def test_get_collection_url_parent_level():
+    collection_url = get_collection_url('test/data/sentinel-s2-l2a-cogs/S2A_30VXL/S2A_30VXL_20210203_0_L2A.json')
+    assert Path(collection_url) == Path('./test/data/sentinel-s2-l2a-cogs/sentinel-s2-l2a-cogs.json').absolute()
 
 
 def test_get_product_definition():

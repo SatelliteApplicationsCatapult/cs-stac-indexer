@@ -46,7 +46,7 @@ def get_collection_url(stac_item: str) -> str:
     for link in metadata.get("links"):
         rel = link.get("rel")
         if rel and rel == "collection":
-            return str((Path(stac_item).parent / link.get("href")).absolute())
+            return str((Path(stac_item).parent / link.get("href")).resolve())
 
 
 def get_product_definition(collection_url: str) -> dict:
