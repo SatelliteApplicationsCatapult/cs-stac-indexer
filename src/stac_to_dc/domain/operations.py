@@ -2,8 +2,6 @@ import os
 from pathlib import Path
 from typing import Tuple
 
-from datacube import index, model
-
 from stac_to_dc.util import load_json
 
 
@@ -61,7 +59,3 @@ def get_product_definition(collection_url: str) -> dict:
         }
 
         return product_definition
-
-
-def create_product(dc_index: index.Index, product_definition: dict) -> model.DatasetType:
-    return dc_index.products.from_doc(product_definition)

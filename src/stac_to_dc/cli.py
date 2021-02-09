@@ -6,7 +6,8 @@ from datacube import model, index
 import click as click
 from datacube.index.hl import Doc2Dataset
 from odc.index.stac import stac_transform, stac_transform_absolute
-from stac_to_dc.domain.operations import get_item, create_product, \
+from stac_to_dc.domain.datacube_operations import create_product
+from stac_to_dc.domain.operations import get_item, \
     get_product_definition, get_collection_url
 
 
