@@ -1,0 +1,22 @@
+name: Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Build
+        run: docker-compose build
+      - name: Docker Up
+        run: docker-compose up -d app && sleep 5
+      - name: Run Unit Tests
+        run: docker-compose run --rm --no-deps --entrypoint=pytest app /tests/unit -v
+      - name: Run Integration Tests
+        run: docker-compose run --rm --no-deps --entrypoint=pytest app /tests/integration -v
