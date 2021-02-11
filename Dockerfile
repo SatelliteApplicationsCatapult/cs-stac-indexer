@@ -15,6 +15,7 @@ WORKDIR /app
 COPY setup.py /app/setup.py
 RUN pip install -e /app/
 RUN pip install pytest
+RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
 RUN chmod +x /wait
