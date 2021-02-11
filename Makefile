@@ -10,6 +10,9 @@ unit-tests:
 integration-tests: up
 	docker-compose run --rm --no-deps --entrypoint=pytest app /tests/integration
 
+e2e-tests: up
+	docker-compose run --rm --no-deps --entrypoint=pytest app /tests/e2e
+
 tests: up unit-tests integration-tests
 
 logs:
