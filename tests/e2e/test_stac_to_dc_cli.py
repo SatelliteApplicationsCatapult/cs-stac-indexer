@@ -4,5 +4,7 @@ from click.testing import CliRunner
 
 def test_main():
     runner = CliRunner()
-    result = runner.invoke(main, ['tests/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json'])
+    result = runner.invoke(main, ['tests/data/sentinel-2/'
+                                  'S2A_MSIL2A_20151002T222056_T01KAU/'
+                                  'S2A_MSIL2A_20151002T222056_T01KAU.json'])
     assert result.exit_code == 0

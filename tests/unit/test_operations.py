@@ -30,10 +30,11 @@ def test_get_collection_url_same_level():
 
 
 def test_get_collection_url_parent_level():
-    collection_url = get_collection_url('tests/data/sentinel-s2-l2a-cogs/S2A_30VXL/S2A_30VXL_20210203_0_L2A.json')
-    assert Path(collection_url) == Path('./tests/data/sentinel-s2-l2a-cogs/sentinel-s2-l2a-cogs.json').absolute()
+    collection_url = get_collection_url('tests/data/sentinel-2/S2A_MSIL2A_20151002T222056_T01KAU/'
+                                        'S2A_MSIL2A_20151002T222056_T01KAU.json')
+    assert Path(collection_url) == Path('./tests/data/sentinel-2/collection.json').absolute()
 
 
 def test_get_product_definition():
-    product_definition = get_product_definition('tests/data/sentinel-s2-l2a-cogs/sentinel-s2-l2a-cogs.json')
+    product_definition = get_product_definition('tests/data/sentinel-2/collection.json')
     assert product_definition

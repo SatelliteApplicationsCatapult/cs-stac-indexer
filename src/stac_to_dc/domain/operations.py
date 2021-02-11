@@ -49,13 +49,13 @@ def get_collection_url(stac_item: str) -> str:
 
 def get_product_definition(collection_url: str) -> dict:
     collection = load_json(collection_url)
-    if collection.get("product_definition"):
+    if "product_definition" in collection.get("stac_extensions"):
         product_definition = {
             "name": collection.get("id"),
             "description": collection.get("description"),
-            "metadata_type": collection.get("product_definition").get("metadata_type"),
-            "metadata": collection.get("product_definition").get("metadata"),
-            "measurements": collection.get("product_definition").get("measurements")
         }
+        for k, v in collection.get("properties").items():
+            if "product_definition:" in k:
+                product_definition[k.split(':')[1]] = v
 
         return product_definition
