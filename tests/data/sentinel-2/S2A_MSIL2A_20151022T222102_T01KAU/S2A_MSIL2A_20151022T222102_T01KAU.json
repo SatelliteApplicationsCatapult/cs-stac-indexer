@@ -1,0 +1,193 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "S2A_MSIL2A_20151022T222102_T01KAU",
+    "properties": {
+        "proj:epsg": 32701,
+        "eo:cloud_cover": 0.0,
+        "gsd": 10,
+        "platform": "sentinel-2",
+        "instruments": [
+            "msi"
+        ],
+        "datetime": "2015-10-22T22:21:02Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    179.17926444633878,
+                    -19.943650180308413
+                ],
+                [
+                    179.20240407672088,
+                    -18.95356468137259
+                ],
+                [
+                    -179.75632222592535,
+                    -18.971998100113254
+                ],
+                [
+                    -179.77314066061123,
+                    -19.963124106519743
+                ],
+                [
+                    179.17926444633878,
+                    -19.943650180308413
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "aot": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_AOT_10m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "aot",
+                    "common_name": "aot",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "coastal": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B01_60m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "coastal",
+                    "common_name": "coastal",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "blue": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B02_10m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "blue",
+                    "common_name": "blue",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "green": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B03_10m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "green",
+                    "common_name": "green",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "red": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B04_10m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "red",
+                    "common_name": "red",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "nir": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B08_10m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "nir",
+                    "common_name": "nir",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "nir08": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B8A_20m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "nir08",
+                    "common_name": "nir08",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "nir09": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B09_60m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "nir09",
+                    "common_name": "nir09",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "swir16": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B11_20m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "swir16",
+                    "common_name": "swir16",
+                    "description": "TBD"
+                }
+            ]
+        },
+        "swir22": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_B12_20m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "swir22",
+                    "common_name": "swir22",
+                    "description": "TBDm"
+                }
+            ]
+        },
+        "scene_classification": {
+            "href": "http://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU_SCL_20m.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "eo:bands": [
+                {
+                    "name": "scene_classification",
+                    "common_name": "scene_classification",
+                    "description": "TBDm"
+                }
+            ]
+        }
+    },
+    "bbox": [
+        99960.0,
+        7790200.0,
+        209760.0,
+        7900000.0
+    ],
+    "stac_extensions": [
+        "projection",
+        "eo"
+    ],
+    "collection": "sentinel-2"
+}
