@@ -3,3 +3,6 @@ elasticsearch==7.10.1
 click~=7.1.2
 datacube~=1.8.3
 setuptools~=53.0.0
+requests~=2.25.1
+pytest~=6.2.2
+responses~=0.12.1

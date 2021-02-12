@@ -1,0 +1,203 @@
+{
+    "id": "sentinel-2",
+    "stac_version": "1.0.0-beta.2",
+    "description": "### Sentinel-2 Datasets\n\n    A collection of Sentinel-2 datasets. Obtained from Copernicus Hub and Google Cloud and preparred by Catapult.\n    ",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151002T222056_T01KAU/S2A_MSIL2A_20151002T222056_T01KAU.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151002T222056_T01KBU/S2A_MSIL2A_20151002T222056_T01KBU.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151022T222102_T01KBU/S2A_MSIL2A_20151022T222102_T01KBU.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWD/S2A_MSIL2A_20151114T223002_T60KWD.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWE/S2A_MSIL2A_20151114T223002_T60KWE.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWF/S2A_MSIL2A_20151114T223002_T60KWF.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWG/S2A_MSIL2A_20151114T223002_T60KWG.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KXD/S2A_MSIL2A_20151114T223002_T60KXD.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KXE/S2A_MSIL2A_20151114T223002_T60KXE.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "self",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json",
+            "type": "application/json"
+        }
+    ],
+    "stac_extensions": [
+        "product_definition"
+    ],
+    "title": "Copernicus Sentinel-2 datasets",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    99960.0,
+                    7790200.0,
+                    709800.0,
+                    8200000.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-02T22:20:56Z",
+                    "2015-11-14T22:30:02Z"
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "European Space Agency",
+            "roles": [
+                "producer"
+            ],
+            "url": "https://www.esa.int/"
+        },
+        {
+            "name": "European Space Agency",
+            "roles": [
+                "licensor"
+            ],
+            "url": "https://www.esa.int/"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "processor"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        },
+        {
+            "name": "Satellite Applications Catapult",
+            "roles": [
+                "host"
+            ],
+            "url": "https://sa.catapult.org.uk/"
+        }
+    ],
+    "properties": {
+        "product_definition:metadata_type": "eo3",
+        "product_definition:metadata": {
+            "product": {
+                "name": "sentinel_2"
+            }
+        },
+        "product_definition:measurements": [
+            {
+                "name": "aot",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "coastal",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "blue",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "green",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "red",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "nir",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "nir08",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "nir09",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "swir16",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "swir22",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+            },
+            {
+                "name": "scene_classification",
+                "units": "1",
+                "dtype": "uint8",
+                "nodata": 0
+            }
+        ]
+    }
+}
