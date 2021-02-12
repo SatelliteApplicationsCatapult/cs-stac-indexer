@@ -1,66 +1,71 @@
 {
-    "id": "s2_l2a",
+    "id": "sentinel-2",
     "stac_version": "1.0.0-beta.2",
     "description": "### Sentinel-2 Datasets\n\n    A collection of Sentinel-2 datasets. Obtained from Copernicus Hub and Google Cloud and preparred by Catapult.\n    ",
     "links": [
         {
             "rel": "root",
-            "href": "../catalog.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151002T222056_T01KAU/S2A_MSIL2A_20151002T222056_T01KAU.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151002T222056_T01KAU/S2A_MSIL2A_20151002T222056_T01KAU.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151002T222056_T01KBU/S2A_MSIL2A_20151002T222056_T01KBU.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151002T222056_T01KBU/S2A_MSIL2A_20151002T222056_T01KBU.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151022T222102_T01KAU/S2A_MSIL2A_20151022T222102_T01KAU.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151022T222102_T01KBU/S2A_MSIL2A_20151022T222102_T01KBU.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151022T222102_T01KBU/S2A_MSIL2A_20151022T222102_T01KBU.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151114T223002_T60KWD/S2A_MSIL2A_20151114T223002_T60KWD.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWD/S2A_MSIL2A_20151114T223002_T60KWD.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151114T223002_T60KWE/S2A_MSIL2A_20151114T223002_T60KWE.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWE/S2A_MSIL2A_20151114T223002_T60KWE.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151114T223002_T60KWF/S2A_MSIL2A_20151114T223002_T60KWF.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWF/S2A_MSIL2A_20151114T223002_T60KWF.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151114T223002_T60KWG/S2A_MSIL2A_20151114T223002_T60KWG.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KWG/S2A_MSIL2A_20151114T223002_T60KWG.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151114T223002_T60KXD/S2A_MSIL2A_20151114T223002_T60KXD.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KXD/S2A_MSIL2A_20151114T223002_T60KXD.json",
             "type": "application/json"
         },
         {
             "rel": "item",
-            "href": "./S2A_MSIL2A_20151114T223002_T60KXE/S2A_MSIL2A_20151114T223002_T60KXE.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/S2A_MSIL2A_20151114T223002_T60KXE/S2A_MSIL2A_20151114T223002_T60KXE.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "self",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/collection.json",
             "type": "application/json"
         },
         {
             "rel": "parent",
-            "href": "../catalog.json",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json",
             "type": "application/json"
         }
     ],
@@ -121,9 +126,9 @@
     ],
     "properties": {
         "product_definition:metadata_type": "eo3",
-        "product_definition:metadata":{
+        "product_definition:metadata": {
             "product": {
-                "name": "s2_l2a"
+                "name": "sentinel_2"
             }
         },
         "product_definition:measurements": [
