@@ -64,6 +64,13 @@ def test_get_collection_url_parent_level():
     assert Path(collection_url) == Path('./tests/data/uksa-ssgp/uksa-ssgp-pleiades/collection.json').absolute()
 
 
+def test_get_collection_url_remote():
+    collection_url = get_collection_url('tests/data/sentinel-2/S2A_MSIL2A_20151002T222056_T01KAU'
+                                        '/S2A_MSIL2A_20151002T222056_T01KAU.json')
+    assert collection_url == 'https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2' \
+                             '/collection.json'
+
+
 def test_get_product_definition():
     product_definition = get_product_definition('tests/data/sentinel-2/collection.json')
     assert product_definition
