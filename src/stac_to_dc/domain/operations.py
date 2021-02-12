@@ -59,7 +59,6 @@ def get_collection_url(stac_item: str) -> str:
 
 
 def get_product_definition(collection_url: str) -> dict:
-    print(collection_url)
     collection = None
     product_definition = None
 
