@@ -1,8 +1,16 @@
+import logging
 import os
 from pathlib import Path
 from typing import Tuple
 
+import requests
+from requests import HTTPError
+from stac_to_dc.config import LOG_LEVEL, LOG_FORMAT
 from stac_to_dc.util import load_json
+
+logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
+
+logger = logging.getLogger(__name__)
 
 
 def guess_location(metadata: dict) -> Tuple[str, bool]:
@@ -48,14 +56,29 @@ def get_collection_url(stac_item: str) -> str:
 
 
 def get_product_definition(collection_url: str) -> dict:
-    collection = load_json(collection_url)
-    if "product_definition" in collection.get("stac_extensions"):
+    collection = None
+    product_definition = None
+
+    if 'http' in collection_url:
+        try:
+            response = requests.get(collection_url)
+            response.raise_for_status()
+        except HTTPError as http_err:
+            logger.error(f'HTTP error occurred: {http_err}')
+        except Exception as err:
+            logger.error(f'Other error occurred: {err}')
+        else:
+            collection = response.json()
+    else:
+        collection = load_json(collection_url)
+
+    if collection and "product_definition" in collection.get("stac_extensions"):
         product_definition = {
-            "name": collection.get("id"),
+            "name": collection.get("properties").get("product_definition:metadata").get("product").get("name"),
             "description": collection.get("description"),
         }
         for k, v in collection.get("properties").items():
             if "product_definition:" in k:
                 product_definition[k.split(':')[1]] = v
 
-        return product_definition
+    return product_definition
