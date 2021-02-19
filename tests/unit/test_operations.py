@@ -1,3 +1,4 @@
+from schema import Schema
 from stac_to_dc.domain.operations import guess_location, get_product_metadata_from_collection
 from stac_to_dc.util import load_json
 
@@ -19,4 +20,11 @@ def test_guess_location_relative():
 def test_get_product_metadata_from_collection():
     collection = load_json('tests/data/sentinel-2/collection.json')
     product = get_product_metadata_from_collection(collection)
-    assert product
+
+    schema = Schema({'name': str,
+                     'description': str,
+                     'metadata_type': str,
+                     'metadata': dict,
+                     'measurements': list}
+                    )
+    assert schema.validate(product)
