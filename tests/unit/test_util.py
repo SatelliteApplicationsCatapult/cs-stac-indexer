@@ -1,4 +1,4 @@
-from stac_to_dc.util import get_files_from_dir, parse_s3_link, load_json, get_rel_links
+from stac_to_dc.util import get_files_from_dir, parse_s3_url, load_json, get_rel_links
 
 
 def test_get_files_from_dir():
@@ -6,9 +6,9 @@ def test_get_files_from_dir():
     assert files
 
 
-def test_parse_s3_link():
-    link = "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/cs_stac/sentinel-2/collection.json"
-    bucket, key = parse_s3_link(link=link)
+def test_parse_s3_url():
+    url = "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/cs_stac/sentinel-2/collection.json"
+    bucket, key = parse_s3_url(url=url)
     assert (bucket, key) == ('public-eo-data', 'cs_stac/sentinel-2/collection.json')
 
 

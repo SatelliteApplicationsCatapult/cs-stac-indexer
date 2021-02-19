@@ -13,8 +13,8 @@ def get_files_from_dir(directory: str, extension: str) -> List[str]:
     return [str(x.absolute()) for x in Path(directory).glob(f'**/*.{extension}')]
 
 
-def parse_s3_link(link: str) -> Tuple[str, str]:
-    return urlparse(link).path.split('/')[1], '/'.join(urlparse(link).path.split('/')[2:])
+def parse_s3_url(url: str) -> Tuple[str, str]:
+    return urlparse(url).path.split('/')[1], '/'.join(urlparse(url).path.split('/')[2:])
 
 
 def get_rel_links(metadata: dict, rel: str) -> List[str]:

@@ -1,7 +1,7 @@
 from typing import List
 
 from stac_to_dc.domain.s3 import S3
-from stac_to_dc.util import parse_s3_link, get_rel_links
+from stac_to_dc.util import parse_s3_url, get_rel_links
 
 
 class S3Repository:
@@ -15,8 +15,8 @@ class S3Repository:
 
     def get_collections_from_catalog(self, catalog: dict) -> List[dict]:
         collection_links = get_rel_links(catalog, 'child')
-        return [self.s3.get_json_object(bucket, key) for bucket, key in map(parse_s3_link, collection_links)]
+        return [self.s3.get_json_object(bucket, key) for bucket, key in map(parse_s3_url, collection_links)]
 
     def get_items_from_collection(self, collection: dict) -> List[dict]:
         item_links = get_rel_links(collection, 'item')
-        return [self.s3.get_json_object(bucket, key) for bucket, key in map(parse_s3_link, item_links)]
+        return [self.s3.get_json_object(bucket, key) for bucket, key in map(parse_s3_url, item_links)]
