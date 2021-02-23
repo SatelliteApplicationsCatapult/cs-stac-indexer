@@ -7,13 +7,13 @@ This repo contains different CLI tools to facilitate data indexing into differen
 ## Usage
 ### stac-to-dc
 
-Indexes the `STAC_ITEM` file given as a parameter into datacube. It automatically resolves and create
-the product definition using the links.
+Indexes the `STAC_URL` catalog/s contained under the given s3 path as a parameter into datacube. It automatically 
+resolves and indexes the *collections* as a **product definition** and *items* as a **dataset**.
 
 
 ```
 > stac-to-dc --help
-Usage: stac-to-dc [OPTIONS] STAC_ITEM
+Usage: stac-to-dc [OPTIONS] STAC_URL
 
 Options:
   --help  Show this message and exit.
@@ -21,27 +21,27 @@ Options:
 
 Example of use
 ```
-> stac-to-dc ./test/data/sentinel-s2-l2a-cogs/S2A_30VXL_20210203_0_L2A.json
+> stac-to-dc stac-to-dc https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json
 ```
 
 One criteria to bear in mind is the `product_definition` stac_extension included in the collection, it
-is where the tool will look at to create the product. This `product_definition` extension looks like this:
+is where the tool will look at in order to create the product. This `product_definition` extension looks like this:
 
 ```json
 {
+    ...
     "stac_extensions": [
-        "item-assets",
         "product_definition"
     ],
     ...
-    "product_definition": {
-        "metadata_type": "eo3",
-        "metadata": {
+    "properties": {
+        "product_definition:metadata_type": "eo3",
+        "product_definition:metadata": {
             "product": {
-                "name": "s2_l2a"
+                "name": "sentinel_2"
             }
         },
-        "measurements": [
+        "product_definition:measurements": [
             {
               "name": "B01",
               "aliases": [

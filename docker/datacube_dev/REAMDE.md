@@ -8,7 +8,7 @@ docker-compose up -d
 
 Index a sample dataset using the `stac-to-dc` tool
 ``` docker
-docker exec -it stac-indexer stac-to-dc tests/data/sentinel-2/S2A_MSIL2A_20151002T222056_T01KAU/S2A_MSIL2A_20151002T222056_T01KAU.json
+docker exec -it stac-indexer stac-to-dc stac-to-dc https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json
 ```
 
 

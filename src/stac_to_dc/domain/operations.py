@@ -1,12 +1,8 @@
 import logging
 import os
-from pathlib import Path
 from typing import Tuple
 
-import requests
-from requests import HTTPError
 from stac_to_dc.config import LOG_LEVEL, LOG_FORMAT
-from stac_to_dc.util import load_json
 
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
 
@@ -41,39 +37,8 @@ def guess_location(metadata: dict) -> Tuple[str, bool]:
     return self_link, relative
 
 
-def get_item(stac_item: str) -> Tuple[dict, str, bool]:
-    metadata = load_json(stac_item)
-    uri, relative = guess_location(metadata)
-    return metadata, uri, relative
-
-
-def get_collection_url(stac_item: str) -> str:
-    metadata = load_json(stac_item)
-    for link in metadata.get("links"):
-        rel = link.get("rel")
-        if rel and rel == "collection":
-            url = link.get("href")
-            if './' in url:  # relative path
-                url = str((Path(stac_item).parent / link.get("href")).resolve())
-            return url
-
-
-def get_product_definition(collection_url: str) -> dict:
-    collection = None
+def get_product_metadata_from_collection(collection: dict) -> dict:
     product_definition = None
-
-    if 'http' in collection_url:
-        try:
-            response = requests.get(collection_url)
-            response.raise_for_status()
-        except HTTPError as http_err:
-            logger.error(f'HTTP error occurred: {http_err}')
-        except Exception as err:
-            logger.error(f'Other error occurred: {err}')
-        else:
-            collection = response.json()
-    else:
-        collection = load_json(collection_url)
 
     if collection and "product_definition" in collection.get("stac_extensions"):
         product_definition = {

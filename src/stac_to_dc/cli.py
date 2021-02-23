@@ -1,28 +1,36 @@
-from typing import Tuple
+import logging
 
 from datacube import Datacube
 from datacube import model, index
 
 import click as click
 from datacube.index.hl import Doc2Dataset
+from datacube.model import DatasetType
 from odc.index.stac import stac_transform, stac_transform_absolute
-from stac_to_dc.domain.operations import get_item, \
-    get_product_definition, get_collection_url
+from stac_to_dc.adapters import repository
+from stac_to_dc.config import get_aws_config, LOG_LEVEL, LOG_FORMAT
+from stac_to_dc.domain.operations import get_product_metadata_from_collection, guess_location
+from stac_to_dc.domain.s3 import S3
+from stac_to_dc.util import parse_s3_url
+
+logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
+
+logger = logging.getLogger(__name__)
 
 
-def stac_item_to_dataset(
+def item_to_dataset(
         dc_index: index.Index,
         product_name: str,
-        stac_item: Tuple[dict, str, bool]
+        item: dict
 ) -> model.Dataset:
 
     doc2ds = Doc2Dataset(index=dc_index, products=[product_name])
-    metadata, uri, relative = stac_item
+    uri, relative = guess_location(item)
 
     if relative:
-        metadata = stac_transform(metadata)
+        metadata = stac_transform(item)
     else:
-        metadata = stac_transform_absolute(metadata)
+        metadata = stac_transform_absolute(item)
 
     ds, err = doc2ds(metadata, uri)
 
@@ -30,35 +38,46 @@ def stac_item_to_dataset(
         return ds
 
 
+def collection_to_product(dc_index: index.Index, collection: dict) -> DatasetType:
+    product_metadata = get_product_metadata_from_collection(collection)
+    return dc_index.products.from_doc(product_metadata)
+
+
 @click.command("stac-to-dc")
-@click.argument("stac-item", type=str, nargs=1)
-def main(stac_item):
+@click.argument("stac-url", type=str, nargs=1)
+def main(stac_url):
+    try:
+        s3_key, s3_secret, s3_endpoint_url = get_aws_config()
+        s3 = S3(key=s3_key, secret=s3_secret, s3_endpoint=s3_endpoint_url, region_name=None)
+        s3_repo = repository.S3Repository(s3)
 
-    dc = Datacube()
+        bucket, path = parse_s3_url(url=stac_url)
+        catalogs = s3_repo.get_catalogs_from_path(bucket=bucket, path=path)
+        for catalog in catalogs:
+            collections = s3_repo.get_collections_from_catalog(catalog)
+            for collection in collections:
+                dc = Datacube()
+                odc_products = dc.index.products.get_all()
+                product = collection_to_product(
+                    dc_index=dc.index,
+                    collection=collection
+                )
+                if product not in odc_products:
+                    logger.info(f"[-- Indexing Product definition: {product.name} --]")
+                    dc.index.products.add(product)
 
-    # Get (stac, uri, relative_uri) tuples
-    item = get_item(stac_item)
+                items = s3_repo.get_items_from_collection(collection)
+                for item in items:
+                    dataset = item_to_dataset(
+                        dc_index=dc.index,
+                        product_name=product.name,
+                        item=item
+                    )
+                    logger.info(f"[-- Indexing Dataset: {dataset.metadata.label} --]")
+                    dc.index.datasets.add(dataset)
 
-    # Get collection link from item
-    collection_url = get_collection_url(stac_item)
-
-    product_doc = get_product_definition(collection_url)
-
-    if product_doc:
-        # Convert dictionary to DatasetType (Product definition)
-        product = dc.index.products.from_doc(product_doc)
-        # Add DatasetType (Product definition) to datacube
-        dc.index.products.add(product)
-
-        # Get dataset
-        dataset = stac_item_to_dataset(
-            dc_index=dc.index,
-            product_name=product.name,
-            stac_item=item
-        )
-
-        # Do the indexing
-        dc.index.datasets.add(dataset)
+    except Exception as err:
+        logger.error(err)
 
 
 if __name__ == '__main__':

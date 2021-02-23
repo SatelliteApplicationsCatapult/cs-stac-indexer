@@ -1,0 +1,28 @@
+{
+    "id": "cs-stac",
+    "stac_version": "1.0.0-beta.2",
+    "description": "### Geospatial datasets hosted by IPP Common Sensing Project \n\n    A catalog of optical and synthetic aperture radar (SAR) satellite datasets and derived products. Hosted by Satellite Applications Catapult.\n    ",
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/sentinel-2/collection.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "self",
+            "href": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json",
+            "type": "application/json"
+        }
+    ],
+    "stac_extensions": [
+        "eo",
+        "projection",
+        "product_definition"
+    ],
+    "title": "IPP Common Sensing Geospatial Datasets"
+}
