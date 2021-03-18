@@ -1,13 +1,16 @@
 import os
 from logging import INFO
-from typing import Tuple
 
 LOG_FORMAT = '%(asctime)s - %(levelname)6s - %(message)s'
 LOG_LEVEL = INFO
 
 
-def get_aws_config() -> Tuple[str, str, str]:
-    s3_key_id = os.getenv('AWS_ACCESS_KEY_ID', 'foobar_id')
-    s3_access_key = os.getenv('AWS_SECRET_ACCESS_KEY', 'foobar_key')
-    s3_endpoint_url = os.getenv('AWS_ENDPOINT_URL', 'http://s3-uk-1.sa-catapult.co.uk')
-    return s3_key_id, s3_access_key, s3_endpoint_url
+def get_s3_configuration():
+    key_id = os.environ.get("S3_ACCESS_KEY_ID", None)
+    access_key = os.environ.get("S3_SECRET_ACCESS_KEY", None)
+    region = os.environ.get("S3_REGION", 'us-east-1')
+    endpoint = os.environ.get("S3_ENDPOINT", 'https://s3-uk-1.sa-catapult.co.uk')
+    bucket = os.environ.get("S3_BUCKET", 'public-eo-data')
+
+    return dict(key_id=key_id, access_key=access_key, region=region,
+                endpoint=endpoint, bucket=bucket)

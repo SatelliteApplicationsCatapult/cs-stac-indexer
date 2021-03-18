@@ -8,7 +8,7 @@ from datacube.index.hl import Doc2Dataset
 from datacube.model import DatasetType
 from odc.index.stac import stac_transform, stac_transform_absolute
 from stac_to_dc.adapters import repository
-from stac_to_dc.config import get_aws_config, LOG_LEVEL, LOG_FORMAT
+from stac_to_dc.config import get_s3_configuration, LOG_LEVEL, LOG_FORMAT
 from stac_to_dc.domain.operations import get_product_metadata_from_collection, guess_location
 from stac_to_dc.domain.s3 import S3
 from stac_to_dc.util import parse_s3_url
@@ -16,6 +16,11 @@ from stac_to_dc.util import parse_s3_url
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
 
 logger = logging.getLogger(__name__)
+
+S3_ACCESS_KEY_ID = get_s3_configuration()["key_id"]
+S3_SECRET_ACCESS_KEY = get_s3_configuration()["access_key"]
+S3_ENDPOINT = get_s3_configuration()["endpoint"]
+S3_REGION = get_s3_configuration()["region"]
 
 
 def item_to_dataset(
@@ -47,8 +52,8 @@ def collection_to_product(dc_index: index.Index, collection: dict) -> DatasetTyp
 @click.argument("stac-url", type=str, nargs=1)
 def main(stac_url):
     try:
-        s3_key, s3_secret, s3_endpoint_url = get_aws_config()
-        s3 = S3(key=s3_key, secret=s3_secret, s3_endpoint=s3_endpoint_url, region_name=None)
+        s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
+                s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
         s3_repo = repository.S3Repository(s3)
 
         bucket, path = parse_s3_url(url=stac_url)
