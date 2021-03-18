@@ -101,3 +101,22 @@ class S3:
         except UnicodeDecodeError:
             logger.error(f"Could not obtain JSON from {object_name}")
             return dict()
+
+    def get_object_body(self, bucket_name, object_name):
+        """
+        Download an object from S3 and return its body.
+        Params:
+            bucket_name            (str): Bucket name
+            object_name            (str): Object name
+        """
+        try:
+            obj = self.s3_resource.Object(bucket_name=bucket_name, key=object_name).get()
+            return obj.get('Body').read()
+        except ClientError as ex:
+            if ex.response['Error']['Code'] == 'NoSuchKey':
+                logger.info(f"No object found for {object_name} in {bucket_name} bucket")
+                raise NoObjectError
+
+
+class NoObjectError(Exception):
+    pass

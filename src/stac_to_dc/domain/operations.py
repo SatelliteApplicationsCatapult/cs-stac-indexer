@@ -2,6 +2,9 @@ import logging
 import os
 from typing import Tuple
 
+from datacube import index, model
+from datacube.index.hl import Doc2Dataset
+from odc.index.stac import stac_transform, stac_transform_absolute
 from stac_to_dc.config import LOG_LEVEL, LOG_FORMAT
 
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
@@ -50,3 +53,23 @@ def get_product_metadata_from_collection(collection: dict) -> dict:
                 product_definition[k.split(':')[1]] = v
 
     return product_definition
+
+
+def item_to_dataset(
+        dc_index: index.Index,
+        product_name: str,
+        item: dict
+) -> model.Dataset:
+
+    doc2ds = Doc2Dataset(index=dc_index, products=[product_name])
+    uri, relative = guess_location(item)
+
+    if relative:
+        metadata = stac_transform(item)
+    else:
+        metadata = stac_transform_absolute(item)
+
+    ds, err = doc2ds(metadata, uri)
+
+    if ds is not None:
+        return ds
