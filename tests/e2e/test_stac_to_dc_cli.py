@@ -1,4 +1,4 @@
-from stac_to_dc.cli import main
+from stac_to_dc.entrypoints.cli import main
 from click.testing import CliRunner
 
 
