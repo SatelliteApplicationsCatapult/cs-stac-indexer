@@ -18,8 +18,8 @@ services:
       - AWS_SECRET_ACCESS_KEY=None
       - AWS_ENDPOINT_URL=http://s3-uk-1.sa-catapult.co.uk
     volumes:
-      - ./src:/app/src
-      - ./tests:/app/tests
+      - ./src:/src
+      - ./tests:/tests
 
   datacube:
     image: kartoza/postgis:11.0-2.5

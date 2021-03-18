@@ -17,8 +17,8 @@ jobs:
       - name: Docker Up
         run: docker-compose up -d app && sleep 5
       - name: Run Unit Tests
-        run: docker-compose run --rm --no-deps --entrypoint=pytest app /app/tests/unit -v
+        run: docker-compose run --rm --no-deps --entrypoint=pytest app /tests/unit -v
       - name: Run Integration Tests
-        run: docker-compose run --rm --no-deps --entrypoint=pytest app /app/tests/integration -v
-      - name: Run E2E Tests
-        run: docker-compose run --rm --no-deps --entrypoint=pytest app /app/tests/e2e -v
+        run: docker-compose run --rm --no-deps --entrypoint=pytest app /tests/integration -v
+      #- name: Run E2E Tests
+      #  run: docker-compose run --rm --no-deps --entrypoint=pytest app /tests/e2e -v

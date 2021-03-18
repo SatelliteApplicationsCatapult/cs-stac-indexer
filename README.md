@@ -21,7 +21,7 @@ Options:
 
 Example of use
 ```
-> stac-to-dc stac-to-dc https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json
+> stac-to-dc https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json
 ```
 
 One criteria to bear in mind is the `product_definition` stac_extension included in the collection, it
@@ -68,25 +68,6 @@ make all
 ```
 
 See [Makefile](./Makefile) for more instructions.
-
-### stac-to-es
-
-Indexes STAC item files contained in the given `COLLECTION_FOLDER` path into Elasticsearch (ES). A new ES index is created
-using the same collection folder's name and uses the given `ID_FIELD` as unique identifier.
-
-```
-> stac-to-es --help
-Usage: stac-to-es [OPTIONS] COLLECTION_FOLDER ID_FIELD
-
-Options:
-  --help  Show this message and exit.
-```
-
-Example of use
-
-```
-> stac-to-es ./test/data/uksa-ssgp/uksa-ssgp-pleiades id
-```
 
 #### Configuration
 
