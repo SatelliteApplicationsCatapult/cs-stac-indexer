@@ -21,7 +21,7 @@ Options:
 
 Example of use
 ```
-> stac-to-dc stac-to-dc https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json
+> stac-to-dc https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac/catalog.json
 ```
 
 One criteria to bear in mind is the `product_definition` stac_extension included in the collection, it
