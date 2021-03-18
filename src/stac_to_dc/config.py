@@ -5,6 +5,11 @@ LOG_FORMAT = '%(asctime)s - %(levelname)6s - %(message)s'
 LOG_LEVEL = INFO
 
 
+def get_nats_uri():
+    host = os.environ.get("NATS_HOST", "localhost")
+    return f"nats://{host}:4222"
+
+
 def get_s3_configuration():
     key_id = os.environ.get("S3_ACCESS_KEY_ID", None)
     access_key = os.environ.get("S3_SECRET_ACCESS_KEY", None)
