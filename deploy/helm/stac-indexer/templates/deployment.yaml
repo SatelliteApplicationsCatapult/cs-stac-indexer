@@ -56,7 +56,6 @@ spec:
               value: {{ .Values.nats.hostname }}
             - name: PYTHONWARNINGS
               value: ignore
-          command: ["python", "/src/stac_to_dc/entrypoints/nats_consumer.py"]
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
