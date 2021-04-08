@@ -1,0 +1,53 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Products{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .panel > h2 {
+            margin-bottom: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="panel highlight">
+        <h2 class="followed lonesome">{{ datacube_products | count }} Local Products</h2>
+        <div class="header-follow">
+            <a href="{{ url_for('product.product_list_text') }}"
+               class="badge header-badge">
+                Text <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            </a>
+        </div>
+        <a href="{{ url_for('stac.collections') }}"
+               class="badge header-badge">
+            As Stac <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        </a>
+
+    <table class="data-table">
+        {% for group_name, product_summaries in grouped_products %}
+            {% if group_name %}
+                <thead>
+                    <tr class="section-header">
+                        <th colspan="3" class="group-name">{{ group_name }}</th>
+                    </tr>
+                </thead>
+            {% endif %}
+            <tbody>
+                {% for product, summary in product_summaries %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('product.product_page', name=product.name) }}"
+                               class="{% if summary.dataset_count == 0 %}muted{% endif %}"
+                                >{{ product.name }}</a>
+                        </td>
+                        <td>{{ product.definition.description }}</td>
+                    </tr>
+                {% else %}
+                    <tr><td>No products in index</td></tr>
+                {% endfor %}
+            </tbody>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

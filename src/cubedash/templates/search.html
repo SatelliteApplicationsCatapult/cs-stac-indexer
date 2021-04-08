@@ -1,0 +1,160 @@
+{% extends "layout/product-section.html" %}
+{% set active_page = "datasets" %}
+
+{% block title %}Search {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="panel relative">
+        <form action="{{ url_for('search_page', product_name=product.name) }}"
+              method="get"
+              class="grid-form">
+            <fieldset>
+                {% set field_list = product | searchable_fields %}
+
+                {% for key, field in field_list %}
+                    {# If it's numeric, add start/end input boxes #}
+                    {% if field | is_numeric_field %}
+                        <div data-row-span="2" id="search-row-{{ key }}"
+                             {% if key not in query_params %}class="disabled"{% endif %}>
+                            <div data-field-span="1">
+                                <label for="search-{{ key }}-begin"
+                                       class="key">{{ product.metadata_type.dataset_fields[key].description }}
+                                    from:</label>
+                                <input type="number"
+                                       step="{{ field | field_step_size }}"
+                                       id="search-{{ key }}-begin"
+                                       name="{{ key }}-begin"
+                                       {% if key not in query_params %}disabled="disabled"{% endif %}
+                                       value="{{ query_params[key] and query_params[key].begin or '' }}"/>
+
+                            </div>
+                            <div data-field-span="1">
+                                <label for="search-{{ key }}-end"
+                                       class="key">{{ product.metadata_type.dataset_fields[key].description }}
+                                    to (exclusive):</label>
+                                <input type="number"
+                                       id="search-{{ key }}-end"
+                                       step="{{ field | field_step_size }}"
+                                       name="{{ key }}-end"
+                                       {% if key not in query_params %}disabled="disabled"{% endif %}
+                                       value="{{ query_params[key] and query_params[key].end or '' }}"/>
+                            </div>
+                        </div>
+                    {% elif field | is_date_field %}
+                        <div data-row-span="2"
+                             id="search-row-{{ key }}"
+                            {% if key not in query_params %}class="disabled"{% endif %}>
+                            <div data-field-span="1">
+                                <label for="search-{{ key }}-before">
+                                    {{ product.metadata_type.dataset_fields[key].description }} From
+                                </label>
+                                <input type="date"
+                                       id="search-{{ key }}-before"
+                                       name="{{ key }}-begin"
+                                       {% if key not in query_params %}disabled="disabled"{% endif %}
+                                       value="{{ query_params[key] and
+                                        query_params[key].begin.strftime('%Y-%m-%d') or '' }}"/>
+                            </div>
+                            <div data-field-span="1">
+                                <label for="search-{{ key }}-after">
+                                    {{ product.metadata_type.dataset_fields[key].description }} to (exclusive)
+                                </label>
+                                <input type="date"
+                                       id="search-{{ key }}-after"
+                                       name="{{ key }}-end"
+                                       {% if key not in query_params %}disabled="disabled"{% endif %}
+                                       value="{{ query_params[key] and
+                                        query_params[key].end.strftime('%Y-%m-%d') or '' }}"/>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div data-row-span="1" id="search-row-{{ key }}"
+                             {% if key not in query_params %}class="disabled"{% endif %}>
+                            <div data-field-span="1">
+                                <label for="search-{{ key }}"
+                                       class="key">{{ product.metadata_type.dataset_fields[key].description }}:</label>
+                                <input type="text"
+                                       id="search-{{ key }}"
+                                       name="{{ key }}"
+                                       {% if key not in query_params %}disabled="disabled"{% endif %}
+                                       value="{{ query_params[key] | default('') }}"/>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+                <p>
+                    <button type="submit">Search</button>
+                </p>
+            </fieldset>
+
+
+        </form>
+        <p class="form-footer">
+            <label for="add-search-field-type">Add field</label>
+            <select id="add-search-field-type"
+                    name="add-search-field-type">
+                <option value="">-</option>
+                {% for key, field in field_list if key not in query_params %}
+                    <option value="{{ key }}">{{ key }}: {{ field.description[:155] }}</option>
+                {% endfor %}
+            </select>
+        </p>
+    </div>
+    <div class="panel odd">
+        {% if datasets %}
+            <p>
+                {% if there_are_more_results %}First{% endif %}
+                {{ datasets | length }} result{% if datasets | length > 1 %}s{% endif %}
+                {% if there_are_more_results %}<strong>(query limit)</strong>{% endif %}
+            </p>
+            <table class="data-table">
+                <thead>
+                <th>Time</th>
+                <th>Label</th>
+                </thead>
+                {% for dataset in datasets %}
+                    <tr class="search-result">
+                        <td>{{ dataset.center_time | printable_time }}</td>
+                        <td>
+                            <a href='{{ url_for('dataset.dataset_page', id_=dataset.id) }}'>{{ dataset | printable_dataset }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h3>No results.</h3>
+        {% endif %}
+
+        {{ back_to_product_overview }}
+    </div>
+{% endblock %}
+
+
+{% block body_footer %}
+    {{ super() }}
+
+    <!-- jQuery is only needed for gridforms. -->
+    <script src="{{ url_for('static', filename='jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='gridforms/gridforms.js') }}"></script>
+
+    <script type="application/javascript">
+        document.getElementById('add-search-field-type').onchange = function (event) {
+            if (event.target.value === "")
+                return;
+
+            let add_field_name = event.target.value,
+                row = document.getElementById('search-row-' + add_field_name),
+                row_fields = row.querySelectorAll('input, select');
+
+            // Show the row that was chosen
+            row.classList.remove('disabled');
+            Array.prototype.forEach.call(row_fields, function (el) {
+                el.disabled = false;
+            });
+
+            // Clear the select box (so the user can choose another)
+            event.target.value = '';
+        };
+    </script>
+{% endblock %}

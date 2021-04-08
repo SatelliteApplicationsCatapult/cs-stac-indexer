@@ -1,0 +1,661 @@
+$bold_highlight: #212121
+
+$content_background: lighten($bold_highlight, 75%)
+
+// The four colors in the dea style guide. Use sparingly (highlights).
+
+$emphasis_strong: darken(#00A1DE, 5%)
+$emphasis_weak: desaturate($emphasis_strong, 10%)
+
+$emphasis_light: #8FCAE7
+
+$highlight_alt: #7AB800
+$highlight_alt2: #EEAF30
+
+$header_highlight: lighten($bold_highlight, 20%)
+$header_highlight_strong: lighten($bold_highlight, 25%)
+$header_background: lighten($bold_highlight, 30%)
+
+$muted_text: lighten($bold_highlight, 32%)
+
+
+$header_stipe1: #2dace1
+$header_stripe2: #7fd0eb
+
+$header_text_spice: darken($header_stipe1, 7%)
+
+$menu_background: $emphasis_strong
+
+$panel_color: lighten($bold_highlight, 85%)
+$panel2_color: lighten($content_background, 6%)
+$panel_highlighted: $header_highlight_strong
+
+// Adjust standard padding based on screen width. We can't use CSS vars due to IE support.
+@mixin box_padding($scale_top:1, $scale_bottom:1, $scale_horizontal:1)
+    @media (min-width: 800px)
+        padding: 15px*$scale_top 30px*$scale_horizontal 15px*$scale_bottom
+
+    padding: 10px*$scale_top 20px*$scale_horizontal 10px*$scale_bottom
+
+// Add the standard padding multiples, but only on the left side.
+@mixin left_padding($scale:1)
+    @media (min-width: 800px)
+        padding-left: 15px*$scale
+
+    padding-left: 10px*$scale
+
+@mixin right_padding($scale:1)
+    @media (min-width: 800px)
+        padding-left: 15px*$scale
+
+    padding-left: 10px*$scale
+
+@mixin top_padding($scale:1)
+    @media (min-width: 800px)
+        padding-top: 15px*$scale
+
+    padding-top: 10px*$scale
+
+@mixin wide_padding
+    @include box_padding(1)
+
+@mixin square_padding
+    @include box_padding(2, 2)
+
+@mixin header_padding
+    // Place a header closer to its contents below.
+    @include box_padding(2, 1)
+
+
+// On small screens, move the description to the info panel.
+.product-description
+    display: none
+
+@media (max-width: 600px)
+    .option-description
+        display: none
+
+    .product-description
+        display: block
+
+body
+    font-family: Helvetica, Arial, sans-serif
+    background: linear-gradient(to bottom, #bababa 90px, #e0e0e0 800px)
+
+    min-height: calc(100vh - 50px)
+    color: $bold_highlight
+    font-size: 0.86em
+    margin: 0 auto
+    padding: 0 15px
+    max-width: 1024px
+
+html
+    scrollbar-color: #95d3f4 #d4dadc
+
+a
+    color: #2b2b2b
+
+.content-wrapper
+    position: relative
+
+.header
+    background: $header_stipe1
+    width: 100%
+    display: block
+    text-align: right
+    @include top_padding
+
+    &::after
+        clear: both
+
+
+    #logo
+        @include left_padding($scale:2)
+        // We can't align vertically perfectly, as logos have different inner padding.
+        padding-top: 5px
+
+        color: #fff
+        float: left
+
+        img
+            vertical-align: middle
+            padding-right: 2px
+
+        > a
+            text-decoration: none
+            color: #fff
+
+        > span.description
+            border-left: 1px solid #fff
+            padding-left: 10px
+            margin-left: 10px
+
+    #menu-link
+        text-align: left
+        > ul
+            display: flex
+            justify-content: flex-end
+            flex-direction: row
+
+        color: #fff
+        a
+            font-weight: bold
+            color: #fff
+
+
+        .ex-menu-title, a
+            cursor: pointer
+            @include box_padding($scale_horizontal: 0.5)
+            display: block
+            white-space: nowrap
+            text-decoration: none
+
+        .ex-menu-title:hover, .is-open > .ex-menu-title
+            background-color: $menu_background
+
+        a:hover
+            color: $header_highlight_strong
+        ul
+            padding: 0
+            margin: 0
+            > li
+                list-style: none
+                position: relative
+
+                > ul > li
+                    background: $menu_background
+                    &:hover
+                        background-color: darken($menu_background, 5%)
+                        a
+                            color: #fff
+
+
+
+        .ex-menu > ul
+            display: none
+        .ex-menu.is-open > ul
+            display: block
+
+            position: absolute
+            top: 100%
+            left: 0
+            &.left
+                left: initial
+                right: 0
+
+            // Above maps etc.
+            z-index: 10000
+
+
+// Menus that are expandable
+.ex-menu-title
+    // This hints to touch devices (such as iPads) to trigger "hover" on click rather than select the text.
+    cursor: pointer
+
+    &::after
+        content: ' ▾'
+
+#breadcrumb
+    background: $header_stripe2
+    color: #efefef
+    font-weight: bold
+    @include wide_padding
+
+    .item
+        color: #fff
+
+// Pages with tabs: put the tabs in the margin.
+header
+    color: #efefef
+    padding: 0
+    display: flex
+    flex-direction: row
+    background: $header_background
+
+footer
+    @include wide_padding
+    text-align: right
+    color: #fff
+    font-size: 0.7em
+    line-height: 2em
+    background-color: $header_highlight
+
+#content
+    clear: right
+    position: relative
+    width: auto
+
+    background-color: $content_background
+
+.map-panel
+    width: 100%
+
+// Spatial page
+#map
+    flex: 1 1
+    height: calc(100vh - 100px)
+
+// show two columns on wide displays
+@media (min-width: 800px)
+    .panels
+        display: flex
+
+    .info-panel
+        width: 250px
+
+
+.info-panel
+    ul
+        list-style-type: none
+        padding: 0
+        margin: 0
+
+h1
+    line-height: 30px
+    font-size: 18px
+    font-weight: normal
+
+    strong
+        display: block
+
+    color: #333
+
+h4
+    color: lighten($bold_highlight, 18%)
+
+// A Header followed by smaller text on the same line
+h2.followed, h3.followed
+    display: inline-block
+
+    // If the header is the only thing in the panel, the follower
+    // can stop normal margin collapse. So we'll manually do it.
+    &.lonesome
+        margin-bottom: 0
+
+.header-follow
+    display: inline-block
+
+ul:last-child, ol:last-child
+    margin-bottom: 0
+
+// The default list indent should be a multiple of normal padding
+ul
+    @include left_padding(2)
+
+    // Quiet list: no bullets, the indent is enough.
+    &.quiet
+        list-style: none
+
+.message-box
+    position: absolute
+    left: calc(50% - 100px)
+    top: 25%
+    width: 200px
+    text-align: center
+    z-index: 9999
+    background: $header_highlight_strong
+    padding: 13px 15px
+    color: #fff
+
+    a
+        color: lighten($emphasis_strong, 10%)
+
+.panel
+    @include square_padding
+    line-height: 1.7em
+    background: $panel_color
+
+    h1, h2, h3, h4, p
+        margin: 15px 0
+        &:first-child
+            margin-top: 0
+        &:last-child
+            margin-bottom: 0
+    h3
+        font-size: 1.3em
+        color: $header_text_spice
+
+    &.odd
+        background-color: $panel2_color
+        border-bottom: 0
+
+    &.highlight
+        background: $panel_highlighted
+        color: #efefef
+        border-bottom: 0
+        > h1
+            color: #fff
+        a
+            color: #aeaeae
+
+    // Allow horizontal scrolling rather than wrapping content
+    &.overflowable
+        overflow-x: auto
+
+.header-option
+    position: relative
+    border-collapse: collapse
+    vertical-align: bottom
+
+    background-color: $header_highlight_strong
+
+    $hover_footer_size: 0px
+    $hover_footer_color: $emphasis_light
+
+    // Has limited, short options. Like a year or month.
+    // So we never want them wrapping.
+    &.limited
+        white-space: nowrap
+
+    &:hover
+        background-color: lighten($header_highlight_strong, 5%)
+    &.primary
+        background-color: $header_highlight
+        &:hover
+            background-color: lighten($header_highlight, 10%)
+
+    &.is-open
+        background-color: $menu_background
+        &:hover
+            background-color: $menu_background
+
+        .option-title
+            &:hover
+                color: #fff
+
+        .option-menu
+            background-color: $menu_background
+            display: table
+
+    .option-title
+        font-size: 1em
+        font-weight: normal
+
+
+    .group-name
+        margin: 0
+        @include header_padding
+        font-size: 0.8em
+        color: $bold_highlight
+        text-transform: lowercase
+
+
+    > .option-title
+        @include wide_padding
+        margin: 0
+        line-height: 1.75em
+        flex: 1 1
+
+        // This hints to touch devices (such as iPads) to trigger "hover" on click rather than select the text.
+        cursor: pointer
+
+        &::after
+            content: ' ▾'
+
+    ul
+        margin: 0
+        padding: 0
+        list-style: none
+        li
+            margin: 0
+
+    a.option-menu-link
+        display: block
+        text-decoration: none
+        @include wide_padding
+        color: #fcfcfc
+        font-weight: bold
+
+        &.active
+            background-color: lighten($menu_background, 5%)
+
+        &:hover
+            background-color: lighten($menu_background, 10%)
+            text-decoration: underline
+            color: #fff
+
+    .option-menu
+        display: none
+        position: absolute
+        top: 100%
+        left: 0
+
+        li.empty
+            opacity: 0.6
+
+        &.left
+            left: initial
+            right: 0
+
+        // Above maps etc
+        z-index: 10000
+
+        > ul
+            display: table-row
+            & > li
+                display: table-cell
+
+        > .footer
+            @include wide_padding
+    // The "All" menu items
+    .wildcard
+        font-weight: bold
+
+
+/* Table of values
+
+.data-table
+    margin: 0 -15px 15px
+
+    tbody tr
+        &:hover
+            background-color: $panel2_color
+
+            .panel.highlight &
+                background-color: darken($panel_highlighted, 4%)
+
+            .panel.odd &
+                background-color: darken($panel2_color, 4%)
+
+    th
+        font-weight: bold
+        font-size: 0.8em
+
+    tr.section-header th
+        padding-top: 15px
+
+    td, th
+        padding: 0 15px
+        text-align: left
+        line-height: 30px
+        vertical-align: top
+
+        // Numeric columns right-aligned for readability, like Excel.
+        &.numeric
+            text-align: right
+
+        // A column that we'd prefer not to be too tiny. Whitespace adds emphasis.
+        &.important-column
+            min-width: 90px
+
+.numeric
+    font-variant-numeric: tabular-nums
+
+/* lists of key-values
+
+.query-param-list
+    width: auto
+    display: grid
+
+@media (min-width: 800px)
+    .query-param-list.wide
+        grid-template-columns: 1fr 1fr
+
+.query-param
+    display: block
+    > .value
+        color: $muted_text
+
+    .value > .query-param
+        margin-left: 15px
+
+    .missing-value
+        text-decoration-style: wavy
+        text-decoration-line: underline
+
+button
+    margin: 5px 0
+    background-color: $emphasis_strong
+    border: 0
+    color: #fff
+    padding: 10px 15px
+    cursor: pointer
+    font-weight: bold
+    font-size: inherit
+
+    &:hover
+        background-color: $emphasis_strong
+
+    &.small
+        margin: 0
+        font-size: 12px
+        background-color: $header_highlight_strong
+
+// Similar to gridforms style
+label
+    text-transform: uppercase
+    letter-spacing: 1px
+    font-size: 10px
+    color: #333
+
+    &.disabled
+        color: #ccc
+
+.form-footer
+    margin: 1em 0
+    > label
+        padding: 8px
+        display: block
+
+    select
+        padding: 6px
+
+        &#add-search-field-type
+            width: 100%
+            text-overflow: ellipsis
+
+.chart-timeline
+    padding: 15px
+
+.chart-timeline-bars
+    font-size: 0
+    height: 50px
+    white-space: nowrap
+
+.chart-timeline-bar
+    width: 2px
+    display: inline-block
+    $graph_highlight: $emphasis_weak
+    background-color: $graph_highlight
+
+    &.new-year
+        background-color: darken($graph_highlight, 5%)
+    &:hover
+        background-color: darken($graph_highlight, 10%)
+
+.chart-timeline-years
+    font-size: 0
+    white-space: nowrap
+
+.chart-timeline-year
+    width: 24px
+    display: inline-block
+    font-size: 10px
+    text-align: center
+    transform: rotate(45deg)
+    transform-origin: top left
+    vertical-align: bottom
+    height: 24px
+
+.relative
+    position: relative
+
+// De-emphasized, less-important text
+.muted
+    color: $muted_text
+.addendum
+    color: $muted_text
+    font-size: 0.7em
+
+// An adornment to a title. Such as the data type.
+.badge
+    font-size: 0.7em
+    background-color: #ccc
+    white-space: nowrap
+    padding: 2px 4px
+
+    // 'font-awesome' icons
+    .fa
+        font-size: 1.1em
+
+    // A highlighted panel is reverse contrast: dark background, light foreground.
+    .panel.highlight &
+        background: darken($header_highlight_strong, 15%)
+        color: #efefef
+
+    // If it's in a header
+    .header-follow &
+        margin-left: 10px
+
+    &.header-badge
+        font-size: inherit
+
+.uri-path
+    font-family: monospace
+    font-size: 12px
+    white-space: nowrap
+
+.raw-metadata
+    .property
+        font-family: 'Courier New', monospace
+
+        .property, .array, .array-item
+            padding-left: 15px
+
+        & > .key
+            font-weight: bold
+
+        summary
+            font-style: italic
+            color: $muted_text
+
+// Information box shown when hovering a map dataset
+.dataset-info
+    background-color: $panel2_color
+    margin: 10px
+    padding: 15px
+
+.recenter-map
+    margin: 0
+    padding: 0
+
+
+.logo-text
+    display: inline-block
+
+details > summary
+  cursor: pointer
+
+@import gridforms/gridforms.sass
+
+// Minor tweak of gridforms defaults
+// Lighten borders
+.grid-form
+
+    +grid-form($grid-border-color: #777, $field-focus-color: lighten(#adb0b3, 8%))
+
+    [data-row-span].disabled
+        display: none
+
+@import "leaflet-1.3.1/leaflet"
+@import "leaflet-groupedlayercontrol/leaflet.groupedlayercontrol"

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.6.3/css/font-awesome.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<!--[if IE]>
+<div class='message-box'>
+    <p>
+        Your version of Internet Explorer is unsupported (requires 11+).
+    </p>
+    <p>
+        <a href="http://www.mozilla.com/firefox">Firefox</a> or Chrome are recommended.
+    </p>
+</div>
+<![endif]-->
+
+<div class="content-wrapper">
+    <div class="header">
+        <div id="logo">
+            <a href="{{ url_for('default_redirect') }}">
+                {% include theme('logo.html') %}
+            </a>
+            <span class="description">
+                {{ explorer_instance_title }}
+            </span>
+        </div>
+        <div id="menu-link">
+            <ul>
+                <li class="top-menu ex-menu">
+                    <span class="ex-menu-title">Products</span>
+                    <ul>
+                        {% for product in datacube_products %}
+                            <li><a href="{{ url_for('product.product_page', name=product.name) }}">{{ product.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="top-menu ex-menu">
+                    <span class="ex-menu-title">Types</span>
+                    <ul>
+                        {% for md_type in datacube_metadata_types %}
+                            <li><a href="{{ url_for('product.metadata_type_page', name=md_type.name) }}">{{ md_type.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="top-menu ex-menu">
+                    <span class="ex-menu-title">Explore</span>
+                    <ul class="left">
+                        <li><a href="{{url_for('arrivals_page')}}">Recently Added</a></li>
+                        <li><a href="{{ url_for('product.storage_page') }}">Storage</a></li>
+                        <li><a href="{{url_for('audit.product_metadata_page')}}">Metadata Issues</a></li>
+                        <li><a href="{{ url_for('about_page') }}">About Explorer</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="breadcrumb">
+        <a class="item" href="/">home</a>
+        {% if breadcrumb %}
+            {% for url, title, valid_link in breadcrumb %}
+                {% if valid_link %}
+                    >> <a class="item" href="{{url}}">{{title}}</a>
+                {% else %}
+                    >> <span class="item">{{title}}</span>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% block header %}{% endblock %}
+    <div id="content">{% block content %}{% endblock %}</div>
+</div>
+<footer>
+    Open Data Cube v<span id="datacube-version">{{ datacube_version }}</span>,
+    Explorer v<span id="app-version">{{ app_version }}</span>, <span id="map-attribution-text"></span><br/>
+    {% if last_updated_time %}
+        Updated {{ last_updated_time | timesince }}
+    {% endif %}
+    {% block footer %}{% endblock %}
+    {% include 'include-footer.env.html' ignore missing %}
+    <div id="quiet-page-errors"></div>
+</footer>
+
+<script src="{{ url_for('static', filename='leaflet-1.3.1/leaflet.js') }}"></script>
+<script src="{{ url_for('static', filename='leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js') }}"></script>
+
+{% if sentry_public_dsn %}
+    <script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
+    <script>
+        Raven.config(
+            {{ sentry_public_dsn | tojson }},
+            {{ sentry_public_args | tojson}}
+        ).install();
+    </script>
+{% endif %}
+
+<!-- Environment includes -->
+{% include 'include-global.env.html' ignore missing %}
+<!-- End Environment includes -->
+{% block body_footer %}{% endblock %}
+<script>
+    // If there's a map on the page, add layer attribution in the footer.
+    (function () {
+        var map = window.MAP;
+        if (map) {
+            var attributionEl = document.getElementById('map-attribution-text');
+
+            function updateAttribution(e) {
+                var attributions = Object.keys(map._layers).map(function (name) {
+                    var layer = map._layers[name];
+                    if (layer.getAttribution) {
+                        return layer.getAttribution();
+                    }
+                    return null;
+                });
+                var isDefined = function (a) {
+                    return a !== null;
+                };
+                var attributionText = new DOMParser().parseFromString(
+                    attributions.filter(isDefined).join(', '),
+                    'text/html'
+                ).body.textContent;
+                attributionEl.innerHTML = attributionText || "";
+            }
+
+            map.on("layeradd", updateAttribution);
+            map.on("layerremove", updateAttribution);
+            updateAttribution();
+        }
+    })();
+
+    // Polyfill element.closest() for IE11: https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector ||
+            Element.prototype.webkitMatchesSelector;
+    }
+    if (!Element.prototype.closest) {
+        Element.prototype.closest = function (s) {
+            var el = this;
+
+            do {
+                if (el.matches(s)) return el;
+                el = el.parentElement || el.parentNode;
+            } while (el !== null && el.nodeType === 1);
+            return null;
+        };
+    }
+
+    // When clicking elsewhere on page, close any open menus.
+    function outsideClickListener(event) {
+        // If it's not part of a header menu
+        if (event.target.closest('.ex-menu') === null) {
+            closeAllMenus();
+        }
+    }
+
+    function closeMenu(headerOption) {
+        headerOption.classList.remove('is-open');
+        headerOption.querySelector('.option-title').setAttribute('aria-expanded', "false");
+        document.removeEventListener('click', outsideClickListener);
+    }
+
+    function closeAllMenus() {
+        Array.prototype.forEach.call(
+            document.querySelectorAll('.ex-menu.is-open'),
+            closeMenu
+        )
+    }
+
+    // Click to open header menus.
+    Array.prototype.forEach.call(
+        document.querySelectorAll('.ex-menu'),
+        function (el, i) {
+            el.querySelector('.ex-menu-title').addEventListener("click", function (event) {
+                if (this.parentNode.classList.contains("is-open")) {
+                    closeMenu(this.parentNode);
+                } else {
+                    closeAllMenus();
+                    // Open header
+                    this.parentNode.classList.add('is-open');
+                    this.setAttribute('aria-expanded', "true");
+                    document.addEventListener('click', outsideClickListener)
+                }
+                event.preventDefault();
+                return false;
+            });
+        }
+    );
+
+</script>
+</body>
+</html>
