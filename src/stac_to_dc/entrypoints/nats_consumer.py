@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 import signal
 
 from datacube import Datacube
@@ -54,6 +55,8 @@ async def run(loop):
             for k, v in r.items():
                 if k in subject:
                     v(dc.index, repo, data)
+                    os.system('cubedash-gen --init --all')
+                    os.system('cubedash-gen --force-refresh')
 
     await nc.subscribe("stac_indexer.*", cb=message_handler)
 

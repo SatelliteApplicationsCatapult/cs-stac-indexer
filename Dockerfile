@@ -9,10 +9,12 @@ ENV PATH="/env/bin:${PATH}"
 
 RUN mkdir -p /src
 COPY src/ /src/
+RUN pip install --upgrade pip
+RUN apt-get update && apt-get install -y build-essential git
 RUN pip install -e /src
-RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index
+RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index sqlalchemy==1.3.20
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
 RUN chmod +x /wait
 
-CMD /wait && datacube system init && tail -f /dev/null
+CMD /wait && datacube system init && python /src/stac_to_dc/entrypoints/nats_consumer.py

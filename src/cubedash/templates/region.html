@@ -1,0 +1,107 @@
+{% extends "layout/product-section.html" %}
+{% set additional_page_args={'region_code': region_code} %}
+{% set active_page = "datasets" %}
+
+{% block title %}{{ super() }} region{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        #region-map {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 200px;
+            width: 66%;
+        }
+
+        .map-container {
+            padding-right: 75%;
+            min-height: calc(200px - 60px);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="panel relative map-container">
+
+        <div id="region-map"></div>
+        <h1><strong>{{ product_region_info.region_label(region_code) }}</strong> {{ product_args_label }}</h1>
+        {% if datasets %}
+            <p>
+                {% if there_are_more_results %}First {% endif %}
+                {{ datasets | length }}
+                {% if there_are_more_results %}
+                    {% if not day %}(of {{ product_region_info.region(region_code).count }} total){% endif %}
+                {% endif %}
+                dataset{% if datasets | length > 1 %}s{% endif %}
+            </p>
+        {% else %}
+            <p>No datasets.</p>
+        {% endif %}
+    </div>
+    <div class="panel odd">
+        {% if datasets %}
+            <table class="data-table">
+                <thead>
+                <th>Time</th>
+                <th>Label</th>
+                </thead>
+                {% for dataset in datasets %}
+                    <tr class="search-result">
+                        <td>{{ dataset.center_time | printable_time }}</td>
+                        <td>
+                            <a href='{{ url_for('dataset.dataset_page', id_=dataset.id) }}'>{{ dataset | printable_dataset }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        {{ back_to_product_overview }}
+    </div>
+{% endblock %}
+
+
+{% block body_footer %}
+    {{ super() }}
+
+    <script type="application/javascript">
+
+        const osm_carto_light = L.tileLayer(
+            "//cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+            {
+                maxZoom: 7,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors,' +
+                ' &copy; <a href="https://cartodb.com/attributions">CartoDB</a>'
+            }
+        );
+
+        const dataset_data = L.geoJson({{ product_region_info.region(region_code).footprint_geojson | torapidjson }},
+            {
+                interactive: false,
+                style: function (feature) {
+                    return {
+                        color: "#1d81a7",
+                        fill: true,
+                        fillColor: "#1d81a7",
+                        opacity: 0.8,
+                        weight: 2,
+                        clickable: false
+                    };
+                }
+            });
+        const map = L.map("region-map", {
+            zoom: 3,
+            center: [-26.2756326, 134.9387844],
+            layers: [osm_carto_light, dataset_data],
+            zoomControl: false,
+            attributionControl: false,
+            scrollWheelZoom: false
+        });
+        L.control.zoom({position: "bottomright"}).addTo(map);
+        map.fitBounds(dataset_data.getBounds(), {animate: false, maxZoom: 5});
+
+        window.MAP = map;
+    </script>
+
+{% endblock %}
