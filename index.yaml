@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  stac-indexer:
+  - apiVersion: v2
+    appVersion: 22a238a
+    created: "2021-04-16T14:58:56.45452797Z"
+    description: A Helm chart for Kubernetes
+    digest: f489b1ce12c161ff2eaa9cc9f5c04158781e073c72757eda23d7e683bf453f13
+    home: https://github.com/SatelliteApplicationsCatapult/cs-stac-indexer
+    maintainers:
+    - email: juan.macias@sa.catapult.org.uk
+      name: SatelliteApplicationsCatapult
+    name: stac-indexer
+    type: application
+    urls:
+    - https://github.com/SatelliteApplicationsCatapult/cs-stac-indexer/releases/download/stac-indexer-0.1.0/stac-indexer-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-04-16T14:58:56.45453277Z"
