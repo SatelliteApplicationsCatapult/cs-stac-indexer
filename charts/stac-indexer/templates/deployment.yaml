@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "stac-indexer.fullname" . }}
+  labels:
+    {{- include "stac-indexer.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "stac-indexer.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "stac-indexer.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "stac-indexer.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DB_HOSTNAME
+              value: {{ .Values.datacube.hostname }}
+            - name: DB_USERNAME
+              value: {{ .Values.datacube.username }}
+            - name: DB_PASSWORD
+              value: {{ .Values.datacube.password }}
+            - name: DB_DATABASE
+              value: {{ .Values.datacube.database }}
+            - name: DB_PORT
+              value: {{ quote .Values.datacube.port }}
+            - name: WAIT_HOSTS
+              value: {{ .Values.datacube.hostname }}:{{ .Values.datacube.port }}
+            - name: S3_ACCESS_KEY_ID
+              value: {{ .Values.s3.accessKeyId }}
+            - name: S3_SECRET_ACCESS_KEY
+              value: {{ .Values.s3.secretAccessKey }}
+            - name: S3_ENDPOINT
+              value: {{ .Values.s3.endpoint }}
+            - name: NATS_HOST
+              value: {{ .Values.nats.hostname }}
+            - name: PYTHONWARNINGS
+              value: ignore
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

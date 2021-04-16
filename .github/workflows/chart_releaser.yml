@@ -1,0 +1,81 @@
+name: Helm Chart Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+      - "**.md.gotmpl"
+      - ".github/**"
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch history
+        run: git fetch --prune --unshallow
+
+      - name: Run chart-testing (lint)
+        uses: helm/chart-testing-action@v2.0.1
+        with:
+          config: .github/ct-lint.yaml
+          command: lint
+
+  validation:
+    runs-on: ubuntu-latest
+    needs:
+      - linting
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kubernetes Validator
+        uses: desaintmartin/helm-kubeval-action@master
+        with:
+          path: charts
+
+  update-readme:
+    runs-on: ubuntu-latest
+    needs:
+      - validation
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Generate documentation
+        run: |
+          curl --silent --show-error --fail --location --output /tmp/helm-docs.tar.gz https://github.com/norwoodj/helm-docs/releases/download/v0.13.0/helm-docs_0.13.0_Linux_x86_64.tar.gz
+          tar -xf /tmp/helm-docs.tar.gz helm-docs
+          ./helm-docs
+          rm helm-docs
+      - uses: juanezm/publish-to-github-action@master
+        env:
+          COMMIT_MSG: "Update chart documentation"
+          GITHUB_TOKEN: ${{ secrets.CR_TOKEN }}
+          BRANCH: main
+
+  release:
+    runs-on: ubuntu-latest
+    needs:
+      - update-readme
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.0
+        env:
+          CR_TOKEN: "${{ secrets.CR_TOKEN }}"
