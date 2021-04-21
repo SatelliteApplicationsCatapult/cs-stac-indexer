@@ -2,7 +2,7 @@ stac-indexer
 ============
 A Helm chart for Kubernetes
 
-Current chart version is `0.1.0`
+Current chart version is `0.1.1`
 
 Source code can be found [here](https://github.com/SatelliteApplicationsCatapult/cs-stac-indexer)
 
