@@ -3,9 +3,18 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "**.md"
+      - "**.md.gotmpl"
+      - ".github/**"
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - "**.md"
+      - "**.md.gotmpl"
+      - ".github/**"
+
 jobs:
   Tests:
     runs-on: ubuntu-latest

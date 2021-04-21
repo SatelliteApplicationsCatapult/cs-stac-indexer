@@ -4,6 +4,10 @@ name: CI to Docker hub
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - "**.md"
+      - "**.md.gotmpl"
+      - ".github/**"
 
 jobs:
   main:
