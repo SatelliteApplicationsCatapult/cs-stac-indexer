@@ -84,7 +84,7 @@ jobs:
 
       - uses: juanezm/publish-to-github-action@master
         env:
-          COMMIT_MSG: "Update chart documentation"
+          COMMIT_MSG: "Update helm chart"
           GITHUB_TOKEN: ${{ secrets.CR_TOKEN }}
           BRANCH: main
 
