@@ -42,16 +42,20 @@ def guess_location(metadata: dict) -> Tuple[str, bool]:
 
 def get_product_metadata_from_collection(collection: dict) -> dict:
     product_definition = None
-
+    
     if collection and "product_definition" in collection.get("stac_extensions"):
+        product_name = collection.get("properties").get("product_definition:metadata").get("product").get("name")
         product_definition = {
-            "name": collection.get("properties").get("product_definition:metadata").get("product").get("name"),
+            "name": product_name,
             "description": collection.get("description"),
         }
         for k, v in collection.get("properties").items():
             if "product_definition:" in k:
-                product_definition[k.split(':')[1]] = v
-
+                key = k.split(':')[1]
+                product_definition[key] = v
+                if k == 'product_definition:metadata':
+                    product_definition[key]['properties'] = {'eo:platform' : product_name}
+                
     return product_definition
 
 
