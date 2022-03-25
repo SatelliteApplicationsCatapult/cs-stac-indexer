@@ -51,10 +51,7 @@ def get_product_metadata_from_collection(collection: dict) -> dict:
         }
         for k, v in collection.get("properties").items():
             if "product_definition:" in k:
-                key = k.split(':')[1]
-                product_definition[key] = v
-                if k == 'product_definition:metadata':
-                    product_definition[key]['properties'] = {'eo:platform' : product_name}
+                product_definition[k.split(':')[1]] = v
                 
     return product_definition
 
