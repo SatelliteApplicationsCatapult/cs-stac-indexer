@@ -1,4 +1,5 @@
 import logging
+import traceback
 
 from datacube import Datacube
 from datacube import model, index
@@ -82,7 +83,7 @@ def main(stac_url):
                     dc.index.datasets.add(dataset)
 
     except Exception as err:
-        logger.error(err)
+        logger.exception(err)
 
 
 if __name__ == '__main__':
