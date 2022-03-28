@@ -1,5 +1,4 @@
 import logging
-import traceback
 
 from datacube import Datacube
 from datacube import model, index
