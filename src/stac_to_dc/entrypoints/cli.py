@@ -82,7 +82,7 @@ def main(stac_url):
                     dc.index.datasets.add(dataset)
 
     except Exception as err:
-        logger.error(err)
+        logger.exception(err)
 
 
 if __name__ == '__main__':
