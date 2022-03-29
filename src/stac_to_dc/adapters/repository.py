@@ -14,7 +14,7 @@ class S3Repository:
         catalog_objs = self.s3.list_objects(bucket, prefix=path, suffix='catalog.json')
         return [self.s3.get_json_object(c.bucket_name, c.key) for c in catalog_objs]
     
-    def get_catalog(self, bucket: str, path: str) -> List[dict]:
+    def get_catalog(self, bucket: str, path: str) -> dict:
         return self.s3.get_json_object(bucket, path)
     
     def get_collections_from_catalog(self, catalog: dict) -> List[dict]:
