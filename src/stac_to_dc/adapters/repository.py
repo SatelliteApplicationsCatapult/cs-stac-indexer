@@ -13,7 +13,10 @@ class S3Repository:
     def get_catalogs_from_path(self, bucket: str, path: str) -> List[dict]:
         catalog_objs = self.s3.list_objects(bucket, prefix=path, suffix='catalog.json')
         return [self.s3.get_json_object(c.bucket_name, c.key) for c in catalog_objs]
-
+    
+    def get_catalog(self, bucket: str, path: str) -> dict:
+        return self.s3.get_json_object(bucket, path)
+    
     def get_collections_from_catalog(self, catalog: dict) -> List[dict]:
         collection_links = get_rel_links(catalog, 'child')
         return [self.s3.get_json_object(bucket, key) for bucket, key in map(parse_s3_url, collection_links)]

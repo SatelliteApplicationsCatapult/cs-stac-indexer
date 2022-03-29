@@ -55,6 +55,13 @@ def get_product_metadata_from_collection(collection: dict) -> dict:
                 
     return product_definition
 
+def add_custom_metadata(metadata: dict) -> dict:
+    try:
+        metadata['eo:platform'] = {'name': metadata['properties']['eo:platform']}
+    except KeyError as e:
+        logger.warning(f"Missing property: {e}")
+    
+    return metadata
 
 def item_to_dataset(
         dc_index: index.Index,
