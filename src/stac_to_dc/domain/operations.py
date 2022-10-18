@@ -79,5 +79,9 @@ def item_to_dataset(
 
     ds, err = doc2ds(metadata, uri)
 
+    if err is not None:
+        logger.error(f"could not create dataset {err}")
+
     if ds is not None:
         return ds
+

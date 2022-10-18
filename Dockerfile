@@ -1,16 +1,13 @@
-FROM opendatacube/geobase:wheels as env_builder
-COPY requirements.txt /
-RUN env-build-tool new /requirements.txt /env
-
-FROM opendatacube/geobase:runner
-COPY --from=env_builder /env /env
+FROM satapps/dask-datacube:v3.2.22
 ENV LC_ALL=C.UTF-8
-ENV PATH="/env/bin:${PATH}"
 
 RUN mkdir -p /src
 COPY src/ /src/
+COPY requirements.txt /src/requirements.txt
+
 RUN pip install --upgrade pip
-RUN apt-get update && apt-get install -y build-essential git
+RUN pip install asyncio-nats-client==0.11.4 boto3~=1.17.8 botocore~=1.20.8
+RUN apt-get --allow-releaseinfo-change update && apt-get install -y build-essential git
 RUN pip install -e /src
 RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index sqlalchemy==1.3.20
 
