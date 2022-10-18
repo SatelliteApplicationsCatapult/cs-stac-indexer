@@ -9,6 +9,7 @@ RUN pip install --upgrade pip
 RUN pip install asyncio-nats-client==0.11.4 boto3~=1.17.8 botocore~=1.20.8 moto~=1.3.16 schema~=0.7.4 pytest~=6.2.2 PyYAML==5.3
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y build-essential git
 RUN pip install -e /src
+RUN pip3 install pyOpenSSL --upgrade
 RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index sqlalchemy==1.3.20
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
