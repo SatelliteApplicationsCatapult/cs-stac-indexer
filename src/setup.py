@@ -44,6 +44,7 @@ setup(
         "simplekml",
         "sqlalchemy",
         "structlog",
+        "PyYAML==5.3"
     ],
     extras_require=extras_require,
     entry_points={
