@@ -76,9 +76,9 @@ def item_to_dataset(
         metadata = stac_transform(item)
     else:
         metadata = stac_transform_absolute(item)
-
+    logger.info("got metadata?")
     ds, err = doc2ds(metadata, uri)
-
+    logger.info(f"ds: {ds} err: {err}")
     if err is not None:
         logger.error(f"could not create dataset {err}")
 
