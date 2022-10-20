@@ -55,6 +55,7 @@ def get_product_metadata_from_collection(collection: dict) -> dict:
                 
     return product_definition
 
+
 def add_custom_metadata(metadata: dict) -> dict:
     try:
         metadata['eo:platform'] = {'name': metadata['properties']['eo:platform']}
@@ -62,6 +63,7 @@ def add_custom_metadata(metadata: dict) -> dict:
         logger.warning(f"Missing property: {e}")
     
     return metadata
+
 
 def item_to_dataset(
         dc_index: index.Index,
@@ -76,6 +78,9 @@ def item_to_dataset(
         metadata = stac_transform(item)
     else:
         metadata = stac_transform_absolute(item)
+
+    metadata = add_custom_metadata(metadata)
+
     logger.info("got metadata?")
     ds, err = doc2ds(metadata, uri)
     logger.info(f"ds: {ds} err: {err}")

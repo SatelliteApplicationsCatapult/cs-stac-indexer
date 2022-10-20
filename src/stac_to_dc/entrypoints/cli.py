@@ -4,6 +4,9 @@ from datacube import Datacube
 from datacube import model, index
 
 import urllib3
+
+from stac_to_dc.domain import operations
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 import click as click
@@ -25,27 +28,6 @@ S3_SECRET_ACCESS_KEY = get_s3_configuration()["access_key"]
 S3_ENDPOINT = get_s3_configuration()["endpoint"]
 S3_REGION = get_s3_configuration()["region"]
 
-
-def item_to_dataset(
-        dc_index: index.Index,
-        product_name: str,
-        item: dict
-) -> model.Dataset:
-
-    doc2ds = Doc2Dataset(index=dc_index, products=[product_name])
-    uri, relative = guess_location(item)
-
-    if relative:
-        metadata = stac_transform(item)
-    else:
-        metadata = stac_transform_absolute(item)
-
-    metadata = add_custom_metadata(metadata)
-
-    ds, err = doc2ds(metadata, uri)
-
-    if ds is not None:
-        return ds
 
 
 def collection_to_product(dc_index: index.Index, collection: dict) -> DatasetType:
@@ -77,7 +59,7 @@ def main(stac_url):
 
             items = s3_repo.get_items_from_collection(collection)
             for item in items:
-                dataset = item_to_dataset(
+                dataset = operations.item_to_dataset(
                     dc_index=dc.index,
                     product_name=product.name,
                     item=item
