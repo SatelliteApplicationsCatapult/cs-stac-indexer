@@ -1,10 +1,17 @@
 import os
+
+# add current folder to path
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# add previous folder to path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import time
 from pathlib import Path
 from typing import Counter, Dict, Iterable, Optional, Tuple
 
 import flask
-import flask_themes
+import flask_themes2 as flask_themes
 import structlog
 from flask_caching import Cache
 from shapely.geometry import MultiPolygon
@@ -13,11 +20,12 @@ from shapely.geometry import MultiPolygon
 # from https://stackoverflow.com/questions/23347387/x-forwarded-proto-and-flask
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from cubedash.summary import SummaryStore, TimePeriodOverview
-from cubedash.summary._extents import RegionInfo
-from cubedash.summary._stores import ProductSummary
+from .summary._stores import SummaryStore
+from .summary._model import TimePeriodOverview
+from .summary._extents import RegionInfo
+from .summary._stores import ProductSummary
 from datacube.index import index_connect
-from datacube.model import DatasetType
+from datacube.model import DatasetType 
 
 try:
     from ._version import version as __version__
