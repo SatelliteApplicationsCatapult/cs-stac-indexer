@@ -15,7 +15,7 @@ def get_s3_configuration():
     key_id = os.environ.get("AWS_ACCESS_KEY_ID", None)
     access_key = os.environ.get("AWS_SECRET_ACCESS_KEY", None)
     region = os.environ.get("AWS_DEFAULT_REGION", None)
-    endpoint = os.environ.get("AWS_S3_ENDPOINT", None)
+    endpoint = os.environ.get("AWS_ENDPOINT_URL", None)
     bucket = os.environ.get("S3_BUCKET", None)
 
     return dict(key_id=key_id, access_key=access_key, region=region,
