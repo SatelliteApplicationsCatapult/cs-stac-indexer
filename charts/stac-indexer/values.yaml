@@ -60,16 +60,21 @@ tolerations: []
 affinity: {}
 
 datacube:
-  hostname: datacubedb-postgresql
+  hostname: datacube
   username: postgres
-  password: localuser1234
+  password: postgres
   database: datacube
   port: 5432
 
 nats:
   hostname: nats
+  port: 4222
+
+aws:
+  accessKey: ""
+  secretKey: ""
+  region: ""
 
 s3:
-  accessKeyId: secret
-  secretAccessKey: secret
-  endpoint: https://s3-uk-1.sa-catapult.co.uk
+  endpoint: ""
+  bucket: ""
