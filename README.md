@@ -72,7 +72,7 @@ is where the tool will look at in order to create the product. This `product_def
 |AWS_ACCESS_KEY_ID | AWS access key |
 |AWS_SECRET_ACCESS_KEY | AWS secret key |
 |AWS_DEFAULT_REGION | AWS region |
-|S3_ENDPOINT_URL | S3 endpoint url |
+|S3_ENDPOINT | S3 endpoint url |
 |S3_BUCKET | S3 bucket name |
 
 
