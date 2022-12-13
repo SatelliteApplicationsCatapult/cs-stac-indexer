@@ -1,18 +1,21 @@
-FROM satapps/dask-datacube:v3.2.22
-ENV LC_ALL=C.UTF-8
+# from python3.8
+FROM python:3.8
+# COPY requirements.txt /
+# RUN env-build-tool new /requirements.txt /env
+# FROM opendatacube/geobase:runner
+# COPY --from=env_builder /env /env
+# ENV LC_ALL=C.UTF-8
+# ENV PATH="/env/bin:${PATH}"
+# RUN mkdir -p /src
+# COPY src/ /src/
+# RUN pip install --upgrade pip
+# RUN apt-get update && apt-get install -y build-essential git
+COPY . .
+RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index
+# RUN python /src/setup.py install
+# ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
+# RUN chmod +x /wait
+WORKDIR /src
+RUN python3 setup.py install
+CMD datacube system init && python3 -m stac_to_dc.entrypoints.nats_consumer
 
-RUN mkdir -p /src
-COPY src/ /src/
-COPY requirements.txt /src/requirements.txt
-
-RUN pip install --upgrade pip
-RUN pip install asyncio-nats-client==0.11.4 boto3~=1.17.8 botocore~=1.20.8 moto~=1.3.16 schema~=0.7.4 pytest~=6.2.2 PyYAML==5.3
-RUN apt-get --allow-releaseinfo-change update && apt-get install -y build-essential git
-RUN pip install -e /src
-RUN pip3 install pyOpenSSL --upgrade
-RUN pip install --extra-index-url="https://packages.dea.ga.gov.au" odc-index sqlalchemy==1.3.20
-
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
-RUN chmod +x /wait
-
-CMD /wait && datacube system init && python /src/stac_to_dc/entrypoints/nats_consumer.py

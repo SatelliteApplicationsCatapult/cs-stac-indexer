@@ -21,18 +21,19 @@ extras_require = {
 setup(
     name='stac_to_dc',
     version='0.1',
-    packages=['stac_to_dc', 'cubedash'],
+    packages=['stac_to_dc'],
     setup_requires=["setuptools_scm"],
     install_requires=[
         "cachetools",
         "click",
         "dataclasses>=0.6;python_version<'3.7'",
         "datacube>=1.8",
+        "datacube-explorer",
         "eodatasets3 >= 0.17.0",
         "fiona",
-        "flask",
+        "Flask==2.2.2",
         "Flask-Caching",
-        "flask_themes @ git+https://git@github.com/opendatacube/flask-themes@master",
+        "flask_themes2",
         "geoalchemy2",
         "geographiclib",
         "jinja2",
@@ -44,7 +45,8 @@ setup(
         "simplekml",
         "sqlalchemy",
         "structlog",
-        "PyYAML==5.3"
+        "PyYAML>=5.3.1",
+        "asyncio-nats-client==0.11.5",
     ],
     extras_require=extras_require,
     entry_points={

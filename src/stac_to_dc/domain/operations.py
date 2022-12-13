@@ -81,9 +81,7 @@ def item_to_dataset(
 
     metadata = add_custom_metadata(metadata)
 
-    logger.info("got metadata?")
     ds, err = doc2ds(metadata, uri)
-    logger.info(f"ds: {ds} err: {err}")
     if err is not None:
         logger.error(f"could not create dataset {err}")
 

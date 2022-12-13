@@ -59,6 +59,23 @@ is where the tool will look at in order to create the product. This `product_def
 }
 ```
 
+## Environment Variables
+| Var name| Used for |
+| --- | --- |
+|DB_HOSTNAME| The hostname of the database |
+|DB_USERNAME| The username of the database user |
+|DB_PASSWORD| The password of the database user |
+|DB_DATABASE| The name of the database |
+|DB_PORT| The port of the database |
+|NATS_HOST | The hostname of the NATS server |
+|NATS_PORT | The port of the NATS server |
+|AWS_ACCESS_KEY_ID | AWS access key |
+|AWS_SECRET_ACCESS_KEY | AWS secret key |
+|AWS_DEFAULT_REGION | AWS region |
+|S3_ENDPOINT | S3 endpoint url |
+|S3_BUCKET | S3 bucket name |
+
+
 #### Test Environment
 
 The following make command will remove if exists any deployment, build the docker image, deploy the environment and run

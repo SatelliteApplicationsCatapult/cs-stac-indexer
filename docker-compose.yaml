@@ -5,28 +5,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - datacube
     environment:
-      - DB_HOSTNAME=datacube
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=localuser1234
-      - DB_DATABASE=datacube
+      - DB_HOSTNAME=
+      - DB_USERNAME=
+      - DB_PASSWORD=
+      - DB_DATABASE=
       - DB_PORT=5432
-      - WAIT_HOSTS=datacube:5432
-      - AWS_ACCESS_KEY_ID=None
-      - AWS_SECRET_ACCESS_KEY=None
-      - AWS_ENDPOINT_URL=http://s3-uk-1.sa-catapult.co.uk
+      - NATS_HOST=
+      - NATS_PORT=
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
+      - AWS_DEFAULT_REGION=
+      - S3_ENDPOINT=
+      - S3_BUCKET=
     volumes:
       - ./src:/src
       - ./tests:/tests
-
-  datacube:
-    image: kartoza/postgis:11.0-2.5
-    container_name: datacube
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=datacube
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=localuser1234

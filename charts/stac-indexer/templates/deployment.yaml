@@ -44,16 +44,23 @@ spec:
               value: {{ .Values.datacube.database }}
             - name: DB_PORT
               value: {{ quote .Values.datacube.port }}
-            - name: WAIT_HOSTS
-              value: {{ .Values.datacube.hostname }}:{{ .Values.datacube.port }}
-            - name: S3_ACCESS_KEY_ID
-              value: {{ .Values.s3.accessKeyId }}
-            - name: S3_SECRET_ACCESS_KEY
-              value: {{ .Values.s3.secretAccessKey }}
-            - name: S3_ENDPOINT
-              value: {{ .Values.s3.endpoint }}
             - name: NATS_HOST
               value: {{ .Values.nats.hostname }}
+            - name: NATS_PORT
+              value: {{ quote .Values.nats.port }}
+            - name: WAIT_HOSTS
+              value: {{ .Values.datacube.hostname }}:{{ .Values.datacube.port }}
+            - name: AWS_ACCESS_KEY_ID
+              value: {{ .Values.aws.accessKey }}
+            - name: AWS_SECRET_ACCESS_KEY
+              value: {{ .Values.aws.secretKey }}
+            - name: AWS_DEFAULT_REGION
+              value: {{ .Values.aws.region }}
+            - name: S3_ENDPOINT
+              value: {{ .Values.s3.endpoint }}
+            - name: S3_BUCKET
+              value: {{ .Values.s3.bucket }}
+
             - name: PYTHONWARNINGS
               value: ignore
           resources:
